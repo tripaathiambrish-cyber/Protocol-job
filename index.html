@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Protocol Job</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f3f6fb;
+    color:#172033;
+}
+
+header{
+    background:#101827;
+    color:white;
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:23px;
+    font-weight:bold;
+}
+
+.user{
+    background:#27344d;
+    padding:8px 13px;
+    border-radius:20px;
+    font-size:13px;
+}
+
+.hero{
+    background:linear-gradient(135deg,#101827,#3155a5);
+    color:white;
+    padding:45px 22px;
+}
+
+.hero h1{
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#dce5ff;
+    line-height:1.5;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:25px 18px;
+}
+
+.section-title{
+    margin:25px 0 15px;
+    font-size:23px;
+}
+
+.packages{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:17px;
+}
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:22px;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.price{
+    font-size:29px;
+    font-weight:bold;
+    margin:12px 0;
+}
+
+.card p{
+    color:#687386;
+    margin-bottom:18px;
+}
+
+.pay{
+    width:100%;
+    border:0;
+    padding:13px;
+    border-radius:9px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.pay:active{
+    transform:scale(.98);
+}
+
+.status{
+    background:white;
+    padding:20px;
+    margin-top:25px;
+    border-radius:15px;
+    box-shadow:0 5px 18px rgba(0,0,0,.06);
+}
+
+.status span{
+    color:#d97706;
+    font-weight:bold;
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    display:none;
+    align-items:flex-end;
+    justify-content:center;
+}
+
+.payment-box{
+    background:white;
+    width:100%;
+    max-width:480px;
+    border-radius:24px 24px 0 0;
+    padding:25px;
+    animation:slide .25s ease;
+}
+
+@keyframes slide{
+    from{transform:translateY(100%)}
+    to{transform:translateY(0)}
+}
+
+.payment-title{
+    font-size:21px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.amount{
+    font-size:34px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.upi-box{
+    background:#f4f6fa;
+    padding:14px;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+.upi-label{
+    font-size:12px;
+    color:#737b89;
+}
+
+.upi-id{
+    font-weight:bold;
+    margin-top:5px;
+}
+
+.open-upi{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:10px;
+    background:#16a34a;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.cancel{
+    width:100%;
+    padding:12px;
+    border:0;
+    background:#eee;
+    border-radius:10px;
+    margin-top:10px;
+}
+
+footer{
+    margin-top:40px;
+    padding:25px;
+    background:#101827;
+    color:#cbd5e1;
+    text-align:center;
+    font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Protocol Job</div>
+    <div class="user">Member</div>
+</header>
+
+<section class="hero">
+    <h1>Protocol Job</h1>
+    <p>
+        Choose a membership package and make your payment securely
+        through your preferred UPI app.
+    </p>
+</section>
+
+<div class="container">
+
+<h2 class="section-title">Weekly Membership</h2>
+
+<div class="packages">
+
+<div class="card">
+    <h3>Starter</h3>
+    <div class="price">₹50</div>
+    <p>7-day membership and member support.</p>
+    <button class="pay" onclick="openPayment('Weekly Starter',50)">
+        Pay Now
+    </button>
+</div>
+
+<div class="card">
+    <h3>Standard</h3>
+    <div class="price">₹100</div>
+    <p>7-day membership with priority support.</p>
+    <button class="pay" onclick="openPayment('Weekly Standard',100)">
+        Pay Now
+    </button>
+</div>
+
+<div class="card">
+    <h3>Plus</h3>
+    <div class="price">₹200</div>
+    <p>7-day membership with extra resources.</p>
+    <button class="pay" onclick="openPayment('Weekly Plus',200)">
+        Pay Now
+    </button>
+</div>
+
+<div class="card">
+    <h3>Pro</h3>
+    <div class="price">₹500</div>
+    <p>7-day premium membership.</p>
+    <button class="pay" onclick="openPayment('Weekly Pro',500)">
+        Pay Now
+    </button>
+</div>
+
+</div>
+
+
+<h2 class="section-title">Monthly Membership</h2>
+
+<div class="packages">
+
+<div class="card">
+    <h3>Basic</h3>
+    <div class="price">₹100</div>
+    <p>30-day membership and support.</p>
+    <button class="pay" onclick="openPayment('Monthly Basic',100)">
+        Pay Now
+    </button>
+</div>
+
+<div class="card">
+    <h3>Standard</h3>
+    <div class="price">₹200</div>
+    <p>30-day membership with extra resources.</p>
+    <button class="pay" onclick="openPayment('Monthly Standard',200)">
+        Pay Now
+    </button>
+</div>
+
+<div class="card">
+    <h3>Premium</h3>
+    <div class="price">₹500</div>
+    <p>30-day premium membership.</p>
+    <button class="pay" onclick="openPayment('Monthly Premium',500)">
+        Pay Now
+    </button>
+</div>
+
+<div class="card">
+    <h3>Pro</h3>
+    <div class="price">₹700</div>
+    <p>30-day premium membership.</p>
+    <button class="pay" onclick="openPayment('Monthly Pro',700)">
+        Pay Now
+    </button>
+</div>
+
+</div>
+
+
+<div class="status">
+
+<h2>Payment Status</h2>
+
+<p id="status">
+    No payment initiated.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- PAYMENT MODAL -->
+
+<div class="modal" id="paymentModal">
+
+<div class="payment-box">
+
+<div class="payment-title">
+    Complete Payment
+</div>
+
+<div id="packageName"></div>
+
+<div class="amount" id="amount">
+    ₹0
+</div>
+
+<div class="upi-box">
+
+<div class="upi-label">
+    Pay to UPI ID
+</div>
+
+<div class="upi-id">
+    ambrishtiwari@fam
+</div>
+
+</div>
+
+<button class="open-upi" onclick="openUPI()">
+    Open UPI App
+</button>
+
+<button class="cancel" onclick="closePayment()">
+    Cancel
+</button>
+
+</div>
+
+</div>
+
+
+<footer>
+© 2026 Protocol Job · Terms · Privacy · Refund Policy
+</footer>
+
+
+<script>
+
+const UPI_ID = "ambrishtiwari@fam";
+const MERCHANT_NAME = "Protocol Job";
+
+let selectedAmount = 0;
+let selectedPackage = "";
+
+function openPayment(packageName, amount){
+
+    selectedPackage = packageName;
+    selectedAmount = amount;
+
+    document.getElementById("packageName").innerText =
+        packageName;
+
+    document.getElementById("amount").innerText =
+        "₹" + amount;
+
+    document.getElementById("paymentModal").style.display =
+        "flex";
+}
+
+
+function closePayment(){
+
+    document.getElementById("paymentModal").style.display =
+        "none";
+}
+
+
+function openUPI(){
+
+    const transactionNote =
+        "Protocol Job - " + selectedPackage;
+
+    const upiURL =
+        "upi://pay" +
+        "?pa=" + encodeURIComponent(UPI_ID) +
+        "&pn=" + encodeURIComponent(MERCHANT_NAME) +
+        "&am=" + encodeURIComponent(selectedAmount) +
+        "&cu=INR" +
+        "&tn=" + encodeURIComponent(transactionNote);
+
+    document.getElementById("status").innerHTML =
+        "Payment initiated — <span>Pending</span>";
+
+    window.location.href = upiURL;
+}
+
+</script>
+
+</body>
+  </html>
