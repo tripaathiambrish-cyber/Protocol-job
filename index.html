@@ -726,4 +726,76 @@ function openPayment(url){
 
 </body>
 </html>
+<!-- ================= CUSTOMER SUPPORT FLOATING BUTTON ================= -->
+
+<style>
+
+.support-float{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    z-index:9999;
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    padding:13px 18px;
+
+    background:#2563eb;
+    color:#ffffff;
+
+    border:none;
+    border-radius:50px;
+
+    font-size:15px;
+    font-weight:700;
+
+    text-decoration:none;
+
+    box-shadow:0 6px 20px rgba(0,0,0,.20);
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.support-float:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}
+
+.support-icon{
+    font-size:19px;
+}
+
+@media(max-width:500px){
+
+    .support-float{
+        right:14px;
+        bottom:14px;
+        padding:12px 16px;
+        font-size:14px;
+    }
+
+}
+
+</style>
+
+
+<a
+    href="support.html"
+    class="support-float"
+    aria-label="Customer Support"
+>
+
+    <span class="support-icon">
+        💬
+    </span>
+
+    <span>
+        Customer Support
+    </span>
+
+</a>
     
