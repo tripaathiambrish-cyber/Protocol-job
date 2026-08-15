@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Protocol Job - Customer Support</title>
+
+<title>Protocol Job</title>
 
 <style>
 *{
@@ -13,33 +14,40 @@
     font-family:Arial,sans-serif;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     background:#f4f7fb;
     color:#172033;
 }
 
 .container{
-    max-width:650px;
-    margin:30px auto;
-    padding:15px;
+    max-width:700px;
+    margin:auto;
+    padding:20px 15px 40px;
 }
 
 .card{
     background:#fff;
-    border-radius:16px;
-    padding:22px;
+    border-radius:18px;
+    padding:24px;
     margin-bottom:20px;
-    box-shadow:0 5px 25px rgba(0,0,0,.07);
+    box-shadow:0 7px 25px rgba(0,0,0,.07);
 }
 
-h1{
+.logo{
     text-align:center;
-    margin-bottom:8px;
+    font-size:30px;
+    font-weight:700;
+    margin-bottom:7px;
 }
 
 .subtitle{
     text-align:center;
     color:#64748b;
+    line-height:1.5;
     margin-bottom:25px;
 }
 
@@ -49,8 +57,8 @@ h2{
 
 label{
     display:block;
-    font-weight:bold;
-    margin:13px 0 7px;
+    font-weight:600;
+    margin:14px 0 7px;
 }
 
 input,textarea{
@@ -63,8 +71,40 @@ input,textarea{
 }
 
 textarea{
-    min-height:130px;
+    min-height:120px;
     resize:vertical;
+}
+
+input:focus,textarea:focus{
+    border-color:#2563eb;
+}
+
+.terms{
+    margin-top:18px;
+    padding:15px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+}
+
+.terms p{
+    color:#475569;
+    font-size:13px;
+    line-height:1.6;
+    margin:7px 0;
+}
+
+.checkbox{
+    display:flex;
+    align-items:flex-start;
+    gap:9px;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.checkbox input{
+    width:auto;
+    margin-top:3px;
 }
 
 button{
@@ -74,8 +114,8 @@ button{
     border:0;
     border-radius:9px;
     background:#2563eb;
-    color:#fff;
-    font-weight:bold;
+    color:white;
+    font-weight:700;
     font-size:15px;
     cursor:pointer;
 }
@@ -84,12 +124,55 @@ button:hover{
     background:#1d4ed8;
 }
 
+.plan-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.plan{
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+    padding:16px;
+}
+
+.plan h3{
+    margin-bottom:6px;
+}
+
+.plan p{
+    color:#64748b;
+    font-size:13px;
+    margin-bottom:10px;
+}
+
+.plan button{
+    background:#111827;
+    margin-top:5px;
+}
+
+.plan button:hover{
+    background:#374151;
+}
+
+.notice{
+    background:#fff7ed;
+    border:1px solid #fed7aa;
+    color:#9a3412;
+    padding:12px;
+    border-radius:9px;
+    font-size:13px;
+    line-height:1.6;
+    margin-bottom:16px;
+}
+
 .message{
     display:none;
-    padding:13px;
+    padding:12px;
+    margin-top:14px;
     border-radius:9px;
-    margin-top:15px;
     line-height:1.5;
+    font-size:14px;
 }
 
 .success{
@@ -102,29 +185,28 @@ button:hover{
     color:#991b1b;
 }
 
-.ticket{
+.ticket-result{
     display:none;
-    margin-top:20px;
-    padding:18px;
+    margin-top:15px;
+    padding:15px;
     background:#eff6ff;
     border:1px solid #bfdbfe;
-    border-radius:12px;
+    border-radius:10px;
 }
 
 .ticket-id{
-    font-size:22px;
+    font-size:20px;
     font-weight:bold;
-    margin-top:6px;
     color:#1d4ed8;
+    margin-top:5px;
 }
 
 .status{
     display:inline-block;
-    margin-top:10px;
+    margin-top:12px;
     padding:7px 12px;
     border-radius:20px;
     font-weight:bold;
-    font-size:14px;
 }
 
 .open{
@@ -151,19 +233,32 @@ button:hover{
     margin-top:15px;
     padding:14px;
     background:#f8fafc;
-    border-radius:10px;
     border-left:4px solid #2563eb;
+    border-radius:8px;
 }
 
-.reply-title{
-    font-weight:bold;
-    margin-bottom:6px;
+.policy{
+    margin-top:20px;
+    padding:20px;
+    background:#fff;
+    border-radius:14px;
 }
 
-.small{
-    color:#64748b;
-    font-size:13px;
-    line-height:1.5;
+.policy p{
+    color:#475569;
+    font-size:14px;
+    line-height:1.7;
+    margin-top:8px;
+}
+
+@media(max-width:500px){
+    .plan-grid{
+        grid-template-columns:1fr;
+    }
+
+    .card{
+        padding:19px;
+    }
 }
 </style>
 </head>
@@ -172,180 +267,326 @@ button:hover{
 
 <div class="container">
 
-    <div class="card">
+<!-- ================= REGISTRATION ================= -->
 
-        <h1>Customer Support</h1>
+<div class="card">
 
-        <p class="subtitle">
-            Need help? Create a support ticket and our
-            support team can review your request.
-        </p>
-
+    <div class="logo">
+        Protocol Job
     </div>
 
-
-    <!-- CREATE TICKET -->
-
-    <div class="card">
-
-        <h2>Create Support Ticket</h2>
-
-        <form id="ticketForm">
-
-            <label>Name</label>
-
-            <input
-                type="text"
-                id="name"
-                placeholder="Enter your name"
-                required
-            >
-
-
-            <label>Email</label>
-
-            <input
-                type="email"
-                id="email"
-                placeholder="Enter your email"
-                required
-            >
-
-
-            <label>Phone Number</label>
-
-            <input
-                type="tel"
-                id="phone"
-                maxlength="10"
-                placeholder="10 digit mobile number"
-                required
-            >
-
-
-            <label>Subject</label>
-
-            <input
-                type="text"
-                id="subject"
-                placeholder="Enter your issue"
-                required
-            >
-
-
-            <label>Message</label>
-
-            <textarea
-                id="message"
-                placeholder="Describe your problem..."
-                required
-            ></textarea>
-
-
-            <button type="submit">
-                Submit Support Ticket
-            </button>
-
-        </form>
-
-
-        <div
-            id="createMessage"
-            class="message">
-        </div>
-
-
-        <div
-            id="newTicket"
-            class="ticket">
-
-            <strong>
-                Ticket Created Successfully
-            </strong>
-
-            <p class="small">
-                Your Ticket ID:
-            </p>
-
-            <div
-                id="newTicketId"
-                class="ticket-id">
-            </div>
-
-            <p class="small" style="margin-top:10px;">
-                Save this Ticket ID to check your
-                support status later.
-            </p>
-
-        </div>
-
+    <div class="subtitle">
+        Registration Form
     </div>
 
+    <form id="registrationForm">
 
-    <!-- CHECK STATUS -->
-
-    <div class="card">
-
-        <h2>Check Support Status</h2>
-
-        <p class="small">
-            Enter your Ticket ID to view the latest
-            status and Admin Reply.
-        </p>
-
-
-        <label>Ticket ID</label>
+        <label>Full Name</label>
 
         <input
+            id="name"
             type="text"
-            id="ticketId"
-            placeholder="Example: PJ-123456"
+            placeholder="Enter your full name"
+            required
         >
 
+        <label>Email Address</label>
 
-        <button onclick="checkTicket()">
-            Check Status
-        </button>
+        <input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            required
+        >
 
+        <label>Phone Number</label>
 
-        <div
-            id="statusMessage"
-            class="message">
-        </div>
+        <input
+            id="phone"
+            type="tel"
+            maxlength="10"
+            inputmode="numeric"
+            pattern="[0-9]{10}"
+            placeholder="10 digit mobile number"
+            required
+        >
 
+        <div class="terms">
 
-        <div
-            id="ticketDetails"
-            class="ticket">
+            <strong>
+                Terms & Conditions / Refund Policy
+            </strong>
 
             <p>
-                <strong>Ticket ID:</strong>
-                <span id="displayId"></span>
+                Please provide accurate information and review
+                the applicable membership and payment conditions
+                before proceeding.
             </p>
 
-            <p style="margin-top:10px;">
-                <strong>Subject:</strong>
-                <span id="displaySubject"></span>
+            <p>
+                Refund requests, where applicable, are subject
+                to the published refund policy and verification.
             </p>
 
+            <label class="checkbox">
 
-            <div
-                id="statusBadge"
-                class="status">
-            </div>
+                <input
+                    type="checkbox"
+                    id="terms"
+                    required
+                >
+
+                <span>
+                    I agree to the Terms & Conditions and
+                    Refund Policy.
+                </span>
+
+            </label>
+
+        </div>
+
+        <button type="submit">
+            Submit & Continue
+        </button>
+
+        <div id="registrationMessage"
+             class="message">
+        </div>
+
+    </form>
+
+</div>
 
 
-            <div class="reply">
+<!-- ================= MEMBERSHIP ================= -->
 
-                <div class="reply-title">
-                    💬 Admin Reply
-                </div>
+<div
+    class="card"
+    id="membership"
+    style="display:none;">
 
-                <div id="adminReply">
-                    No reply yet.
-                </div>
+    <h2>
+        Membership Plans
+    </h2>
 
-            </div>
+    <div class="notice">
+        Select a membership plan to continue to its
+        corresponding payment page. Review the applicable
+        terms before making payment.
+    </div>
+
+    <div class="plan-grid">
+
+        <div class="plan">
+            <h3>₹50 Weekly</h3>
+            <p>Weekly membership</p>
+            <button onclick="pay('https://rzp.io/rzp/BHYMkuN')">
+                Pay ₹50
+            </button>
+        </div>
+
+        <div class="plan">
+            <h3>₹100 Weekly</h3>
+            <p>Weekly membership</p>
+            <button onclick="pay('https://rzp.io/rzp/HA3J194Z')">
+                Pay ₹100
+            </button>
+        </div>
+
+        <div class="plan">
+            <h3>₹200 Weekly</h3>
+            <p>Weekly membership</p>
+            <button onclick="pay('https://rzp.io/rzp/VnyJD0j')">
+                Pay ₹200
+            </button>
+        </div>
+
+        <div class="plan">
+            <h3>₹500 Weekly</h3>
+            <p>Weekly membership</p>
+            <button onclick="pay('https://rzp.io/rzp/dxZbJvJo')">
+                Pay ₹500
+            </button>
+        </div>
+
+        <div class="plan">
+            <h3>₹100 Monthly</h3>
+            <p>Monthly membership</p>
+            <button onclick="pay('https://rzp.io/rzp/FyS7XzH')">
+                Pay ₹100
+            </button>
+        </div>
+
+        <div class="plan">
+            <h3>₹200 Monthly</h3>
+            <p>Monthly membership</p>
+            <button onclick="pay('https://rzp.io/rzp/jkulf4O')">
+                Pay ₹200
+            </button>
+        </div>
+
+        <div class="plan">
+            <h3>₹500 Monthly</h3>
+            <p>Monthly membership</p>
+            <button onclick="pay('https://rzp.io/rzp/xSMVjDb')">
+                Pay ₹500
+            </button>
+        </div>
+
+        <div class="plan">
+            <h3>₹700 Monthly</h3>
+            <p>Monthly membership</p>
+            <button onclick="pay('https://rzp.io/rzp/wE8Tehkc')">
+                Pay ₹700
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= CUSTOMER SUPPORT ================= -->
+
+<div class="card" id="support">
+
+    <h2>
+        Customer Support
+    </h2>
+
+    <p style="color:#64748b;line-height:1.5;">
+        Need help? Create a support ticket and save the
+        Ticket ID to check its status later.
+    </p>
+
+    <form id="ticketForm">
+
+        <label>Name</label>
+
+        <input
+            id="ticketName"
+            type="text"
+            placeholder="Your name"
+            required
+        >
+
+        <label>Email</label>
+
+        <input
+            id="ticketEmail"
+            type="email"
+            placeholder="Your email"
+            required
+        >
+
+        <label>Phone Number</label>
+
+        <input
+            id="ticketPhone"
+            type="tel"
+            maxlength="10"
+            placeholder="10 digit mobile number"
+            required
+        >
+
+        <label>Subject</label>
+
+        <input
+            id="subject"
+            type="text"
+            placeholder="Enter your issue"
+            required
+        >
+
+        <label>Message</label>
+
+        <textarea
+            id="ticketMessage"
+            placeholder="Describe your problem..."
+            required
+        ></textarea>
+
+        <button type="submit">
+            Create Support Ticket
+        </button>
+
+    </form>
+
+    <div
+        id="ticketMessageBox"
+        class="message">
+    </div>
+
+    <div
+        id="ticketResult"
+        class="ticket-result">
+
+        <strong>
+            Ticket Created
+        </strong>
+
+        <p style="margin-top:8px;">
+            Your Ticket ID:
+        </p>
+
+        <div
+            id="newTicketId"
+            class="ticket-id">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= CHECK STATUS ================= -->
+
+<div class="card">
+
+    <h2>
+        Check Ticket Status
+    </h2>
+
+    <input
+        id="checkTicketId"
+        type="text"
+        placeholder="Enter Ticket ID"
+    >
+
+    <button onclick="checkTicket()">
+        Check Status
+    </button>
+
+    <div
+        id="statusBox"
+        class="ticket-result">
+
+        <p>
+            <strong>Ticket ID:</strong>
+            <span id="showTicketId"></span>
+        </p>
+
+        <p style="margin-top:10px;">
+            <strong>Subject:</strong>
+            <span id="showSubject"></span>
+        </p>
+
+        <div
+            id="statusBadge"
+            class="status">
+        </div>
+
+        <div class="reply">
+
+            <strong>
+                💬 Admin Reply
+            </strong>
+
+            <p
+                id="adminReply"
+                style="margin-top:7px;">
+                No reply yet.
+            </p>
 
         </div>
 
@@ -354,31 +595,167 @@ button:hover{
 </div>
 
 
+<!-- ================= POLICY ================= -->
+
+<div class="policy">
+
+    <h2>
+        Terms & Conditions
+    </h2>
+
+    <p>
+        Users must provide accurate registration information.
+    </p>
+
+    <p>
+        Users should review the applicable membership,
+        payment and service conditions before proceeding.
+    </p>
+
+</div>
+
+
+<div class="policy">
+
+    <h2>
+        Refund Policy
+    </h2>
+
+    <p>
+        Eligible refund requests may be submitted according
+        to the applicable refund conditions and verification
+        requirements.
+    </p>
+
+    <p>
+        Keep your registration and payment confirmation
+        details for any support or refund request.
+    </p>
+
+</div>
+
+</div>
+
+
 <script>
 
-/*
-|--------------------------------------------------------------------------
-| BACKEND URL
-|--------------------------------------------------------------------------
-|
-| If index.html and server.js are deployed together:
-|
-| const API_BASE = "";
-|
-| If server.js is deployed separately:
-|
-| const API_BASE = "https://YOUR-SERVER-URL";
-|
-*/
+/* ================= BACKEND ================= */
 
 const API_BASE = "";
 
 
-/*
-|--------------------------------------------------------------------------
-| CREATE TICKET
-|--------------------------------------------------------------------------
-*/
+/* ================= REGISTRATION ================= */
+
+document
+.getElementById("registrationForm")
+.addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    const box =
+        document.getElementById(
+            "registrationMessage"
+        );
+
+    box.style.display = "none";
+
+
+    const data = {
+
+        name:
+            document.getElementById("name")
+            .value.trim(),
+
+        email:
+            document.getElementById("email")
+            .value.trim(),
+
+        phone:
+            document.getElementById("phone")
+            .value.trim()
+
+    };
+
+
+    try{
+
+        /*
+         * Backend connected version.
+         */
+
+        const response =
+            await fetch(
+                API_BASE + "/api/register",
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                        "application/json"
+                    },
+
+                    body:JSON.stringify(data)
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if(!response.ok){
+
+            throw new Error(
+                result.error ||
+                "Registration failed."
+            );
+
+        }
+
+
+        document
+        .getElementById(
+            "membership"
+        )
+        .style.display = "block";
+
+
+        document
+        .getElementById(
+            "membership"
+        )
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+
+    }catch(error){
+
+        box.textContent =
+            "Server connection failed. Please try again.";
+
+        box.className =
+            "message error";
+
+        box.style.display = "block";
+
+        console.error(error);
+
+    }
+
+});
+
+
+/* ================= PAYMENT ================= */
+
+function pay(url){
+
+    window.location.href = url;
+
+}
+
+
+/* ================= CREATE TICKET ================= */
 
 document
 .getElementById("ticketForm")
@@ -387,36 +764,37 @@ document
     e.preventDefault();
 
 
-    const message =
+    const box =
         document.getElementById(
-            "createMessage"
-        );
-
-    const newTicket =
-        document.getElementById(
-            "newTicket"
+            "ticketMessageBox"
         );
 
 
-    message.style.display="none";
-    newTicket.style.display="none";
+    const resultBox =
+        document.getElementById(
+            "ticketResult"
+        );
+
+
+    box.style.display = "none";
+    resultBox.style.display = "none";
 
 
     const data = {
 
         name:
             document.getElementById(
-                "name"
+                "ticketName"
             ).value.trim(),
 
         email:
             document.getElementById(
-                "email"
+                "ticketEmail"
             ).value.trim(),
 
         phone:
             document.getElementById(
-                "phone"
+                "ticketPhone"
             ).value.trim(),
 
         subject:
@@ -426,7 +804,7 @@ document
 
         message:
             document.getElementById(
-                "message"
+                "ticketMessage"
             ).value.trim()
 
     };
@@ -436,8 +814,7 @@ document
 
         const response =
             await fetch(
-                API_BASE +
-                "/api/tickets",
+                API_BASE + "/api/tickets",
                 {
                     method:"POST",
 
@@ -460,7 +837,7 @@ document
 
             throw new Error(
                 result.error ||
-                "Unable to create ticket"
+                "Ticket creation failed."
             );
 
         }
@@ -474,7 +851,7 @@ document
             result.ticketId;
 
 
-        newTicket.style.display="block";
+        resultBox.style.display = "block";
 
 
         document
@@ -486,64 +863,42 @@ document
 
     }catch(error){
 
-        message.textContent =
-            error.message ||
-            "Server error. Please try again.";
+        box.textContent =
+            "Unable to create ticket. Please try again.";
 
-        message.className =
+        box.className =
             "message error";
 
-        message.style.display="block";
+        box.style.display = "block";
 
     }
 
 });
 
 
-/*
-|--------------------------------------------------------------------------
-| CHECK TICKET
-|--------------------------------------------------------------------------
-*/
+/* ================= CHECK STATUS ================= */
 
 async function checkTicket(){
 
-    const ticketId =
+    const id =
         document
         .getElementById(
-            "ticketId"
+            "checkTicketId"
         )
         .value
         .trim();
 
 
-    const message =
+    const box =
         document
         .getElementById(
-            "statusMessage"
+            "statusBox"
         );
 
 
-    const details =
-        document
-        .getElementById(
-            "ticketDetails"
-        );
+    if(!id){
 
-
-    message.style.display="none";
-    details.style.display="none";
-
-
-    if(!ticketId){
-
-        message.textContent =
-            "Please enter your Ticket ID.";
-
-        message.className =
-            "message error";
-
-        message.style.display="block";
+        alert("Please enter your Ticket ID.");
 
         return;
     }
@@ -555,21 +910,19 @@ async function checkTicket(){
             await fetch(
                 API_BASE +
                 "/api/tickets/" +
-                encodeURIComponent(
-                    ticketId
-                )
+                encodeURIComponent(id)
             );
 
 
-        const result =
+        const data =
             await response.json();
 
 
         if(!response.ok){
 
             throw new Error(
-                result.error ||
-                "Ticket not found"
+                data.error ||
+                "Ticket not found."
             );
 
         }
@@ -577,18 +930,18 @@ async function checkTicket(){
 
         document
         .getElementById(
-            "displayId"
+            "showTicketId"
         )
         .textContent =
-            result.ticketId;
+            data.ticketId;
 
 
         document
         .getElementById(
-            "displaySubject"
+            "showSubject"
         )
         .textContent =
-            result.subject;
+            data.subject;
 
 
         const badge =
@@ -599,14 +952,14 @@ async function checkTicket(){
 
         badge.textContent =
             getStatusText(
-                result.status
+                data.status
             );
 
 
         badge.className =
             "status " +
             getStatusClass(
-                result.status
+                data.status
             );
 
 
@@ -615,83 +968,62 @@ async function checkTicket(){
             "adminReply"
         )
         .textContent =
-            result.adminReply ||
+            data.adminReply ||
             "No reply yet.";
 
 
-        details.style.display="block";
+        box.style.display = "block";
 
 
     }catch(error){
 
-        message.textContent =
-            error.message ||
-            "Unable to find ticket.";
-
-        message.className =
-            "message error";
-
-        message.style.display="block";
+        alert(
+            "Ticket not found or server unavailable."
+        );
 
     }
 
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| STATUS
-|--------------------------------------------------------------------------
-*/
+/* ================= STATUS ================= */
 
 function getStatusText(status){
 
-    switch(status){
+    if(status === "open")
+        return "🟢 Open";
 
-        case "open":
-            return "🟢 Open";
+    if(status === "in_progress")
+        return "🟡 In Progress";
 
-        case "in_progress":
-            return "🟡 In Progress";
+    if(status === "resolved")
+        return "🔵 Resolved";
 
-        case "resolved":
-            return "🔵 Resolved";
+    if(status === "closed")
+        return "🔴 Closed";
 
-        case "closed":
-            return "🔴 Closed";
-
-        default:
-            return "🟢 Open";
-
-    }
-
+    return "🟢 Open";
 }
 
 
 function getStatusClass(status){
 
-    switch(status){
+    if(status === "open")
+        return "open";
 
-        case "open":
-            return "open";
+    if(status === "in_progress")
+        return "progress";
 
-        case "in_progress":
-            return "progress";
+    if(status === "resolved")
+        return "resolved";
 
-        case "resolved":
-            return "resolved";
+    if(status === "closed")
+        return "closed";
 
-        case "closed":
-            return "closed";
-
-        default:
-            return "open";
-
-    }
-
+    return "open";
 }
 
 </script>
 
 </body>
-</html>
+    </html>
