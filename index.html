@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Protocol Job</title>
+<title>Protocol Job - Customer Support</title>
 
 <style>
 *{
@@ -18,238 +18,191 @@ body{
     color:#172033;
 }
 
-/* HEADER */
-header{
-    background:#111827;
-    color:#fff;
-    padding:18px 6%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.container{
+    max-width:650px;
+    margin:30px auto;
+    padding:15px;
 }
 
-.logo{
-    font-size:24px;
-    font-weight:800;
-}
-
-.badge-top{
-    font-size:13px;
-    opacity:.8;
-}
-
-/* FORM PAGE */
-#formPage{
-    min-height:calc(100vh - 70px);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-    background:linear-gradient(135deg,#111827,#3155a5);
-}
-
-.form-card{
-    width:100%;
-    max-width:430px;
+.card{
     background:#fff;
-    padding:30px;
-    border-radius:20px;
-    box-shadow:0 15px 40px rgba(0,0,0,.25);
+    border-radius:16px;
+    padding:22px;
+    margin-bottom:20px;
+    box-shadow:0 5px 25px rgba(0,0,0,.07);
 }
 
-.form-card h1{
+h1{
     text-align:center;
     margin-bottom:8px;
 }
 
-.form-subtitle{
+.subtitle{
     text-align:center;
-    color:#737b89;
+    color:#64748b;
     margin-bottom:25px;
+}
+
+h2{
+    margin-bottom:18px;
 }
 
 label{
     display:block;
-    margin:15px 0 7px;
-    font-weight:700;
+    font-weight:bold;
+    margin:13px 0 7px;
 }
 
-input{
+input,textarea{
     width:100%;
-    padding:14px;
-    border:1px solid #d7dce5;
-    border-radius:10px;
+    padding:13px;
+    border:1px solid #d1d5db;
+    border-radius:9px;
     font-size:15px;
     outline:none;
 }
 
-input:focus{
-    border-color:#2563eb;
+textarea{
+    min-height:130px;
+    resize:vertical;
 }
 
-.submit-btn{
-    width:100%;
-    margin-top:23px;
-    padding:14px;
-    border:0;
-    border-radius:10px;
-    background:#2563eb;
-    color:#fff;
-    font-size:16px;
-    font-weight:700;
-    cursor:pointer;
-}
-
-/* PAYMENT PAGE */
-#paymentPage{
-    display:none;
-    max-width:1100px;
-    margin:auto;
-    padding:30px 18px;
-}
-
-.payment-hero{
-    background:linear-gradient(135deg,#111827,#3155a5);
-    color:#fff;
-    padding:32px 25px;
-    border-radius:18px;
-    margin-bottom:28px;
-}
-
-.payment-hero h1{
-    font-size:32px;
-    margin-bottom:8px;
-}
-
-.payment-hero p{
-    color:#dce5ff;
-}
-
-.section-title{
-    margin:28px 0 15px;
-}
-
-.plan-grid{
-    display:grid;
-    grid-template-columns:
-    repeat(auto-fit,minmax(220px,1fr));
-    gap:18px;
-}
-
-.plan{
-    background:#fff;
-    border:1px solid #e5e8ee;
-    border-radius:16px;
-    padding:22px;
-    box-shadow:0 5px 18px rgba(0,0,0,.07);
-}
-
-.plan-type{
-    display:inline-block;
-    background:#e8f0ff;
-    color:#1d4ed8;
-    padding:5px 9px;
-    border-radius:20px;
-    font-size:12px;
-    font-weight:700;
-}
-
-.plan h3{
-    margin-top:12px;
-}
-
-.price{
-    font-size:30px;
-    font-weight:800;
-    margin:12px 0;
-}
-
-.plan ul{
-    padding-left:20px;
-    color:#596275;
-    line-height:1.7;
-    margin-bottom:18px;
-}
-
-.pay-btn{
-    display:block;
+button{
     width:100%;
     padding:13px;
+    margin-top:17px;
+    border:0;
     border-radius:9px;
     background:#2563eb;
     color:#fff;
-    text-align:center;
-    text-decoration:none;
-    font-weight:700;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
 }
 
-.pay-btn:hover{
+button:hover{
     background:#1d4ed8;
 }
 
-.user-info{
-    background:#fff;
-    border:1px solid #e5e8ee;
-    border-radius:15px;
-    padding:20px;
-    margin-bottom:25px;
+.message{
+    display:none;
+    padding:13px;
+    border-radius:9px;
+    margin-top:15px;
+    line-height:1.5;
 }
 
-.user-info strong{
-    display:block;
+.success{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.error{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.ticket{
+    display:none;
+    margin-top:20px;
+    padding:18px;
+    background:#eff6ff;
+    border:1px solid #bfdbfe;
+    border-radius:12px;
+}
+
+.ticket-id{
+    font-size:22px;
+    font-weight:bold;
+    margin-top:6px;
+    color:#1d4ed8;
+}
+
+.status{
+    display:inline-block;
+    margin-top:10px;
+    padding:7px 12px;
+    border-radius:20px;
+    font-weight:bold;
+    font-size:14px;
+}
+
+.open{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.progress{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.resolved{
+    background:#dbeafe;
+    color:#1e40af;
+}
+
+.closed{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.reply{
+    margin-top:15px;
+    padding:14px;
+    background:#f8fafc;
+    border-radius:10px;
+    border-left:4px solid #2563eb;
+}
+
+.reply-title{
+    font-weight:bold;
     margin-bottom:6px;
 }
 
-footer{
-    margin-top:35px;
-    padding:25px;
-    background:#111827;
-    color:#cbd5e1;
-    text-align:center;
+.small{
+    color:#64748b;
     font-size:13px;
+    line-height:1.5;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">Protocol Job</div>
-    <div class="badge-top">Membership & Services</div>
-</header>
+<div class="container">
 
+    <div class="card">
 
-<!-- =========================
-     PAGE 1: FORM
-========================= -->
+        <h1>Customer Support</h1>
 
-<section id="formPage">
-
-    <div class="form-card">
-
-        <h1>Welcome to Protocol Job</h1>
-
-        <p class="form-subtitle">
-            Enter your details to continue
+        <p class="subtitle">
+            Need help? Create a support ticket and our
+            support team can review your request.
         </p>
 
-        <form id="userForm">
+    </div>
 
-            <label for="name">
-                Full Name
-            </label>
+
+    <!-- CREATE TICKET -->
+
+    <div class="card">
+
+        <h2>Create Support Ticket</h2>
+
+        <form id="ticketForm">
+
+            <label>Name</label>
 
             <input
                 type="text"
                 id="name"
-                placeholder="Enter your full name"
+                placeholder="Enter your name"
                 required
             >
 
 
-            <label for="email">
-                Email Address
-            </label>
+            <label>Email</label>
 
             <input
                 type="email"
@@ -259,371 +212,484 @@ footer{
             >
 
 
-            <label for="phone">
-                Phone Number
-            </label>
+            <label>Phone Number</label>
 
             <input
                 type="tel"
                 id="phone"
-                placeholder="Enter 10-digit phone number"
                 maxlength="10"
-                pattern="[0-9]{10}"
+                placeholder="10 digit mobile number"
                 required
             >
 
 
-            <button
-                type="submit"
-                class="submit-btn"
+            <label>Subject</label>
+
+            <input
+                type="text"
+                id="subject"
+                placeholder="Enter your issue"
+                required
             >
-                Submit
+
+
+            <label>Message</label>
+
+            <textarea
+                id="message"
+                placeholder="Describe your problem..."
+                required
+            ></textarea>
+
+
+            <button type="submit">
+                Submit Support Ticket
             </button>
 
         </form>
 
+
+        <div
+            id="createMessage"
+            class="message">
+        </div>
+
+
+        <div
+            id="newTicket"
+            class="ticket">
+
+            <strong>
+                Ticket Created Successfully
+            </strong>
+
+            <p class="small">
+                Your Ticket ID:
+            </p>
+
+            <div
+                id="newTicketId"
+                class="ticket-id">
+            </div>
+
+            <p class="small" style="margin-top:10px;">
+                Save this Ticket ID to check your
+                support status later.
+            </p>
+
+        </div>
+
     </div>
 
-</section>
 
+    <!-- CHECK STATUS -->
 
-<!-- =========================
-     PAGE 2: PROTOCOL PAYMENT
-========================= -->
+    <div class="card">
 
-<main id="paymentPage">
+        <h2>Check Support Status</h2>
 
-    <section class="payment-hero">
-
-        <h1>Protocol Payment</h1>
-
-        <p>
-            Choose a membership package and continue
-            to the secure payment page.
+        <p class="small">
+            Enter your Ticket ID to view the latest
+            status and Admin Reply.
         </p>
 
-    </section>
+
+        <label>Ticket ID</label>
+
+        <input
+            type="text"
+            id="ticketId"
+            placeholder="Example: PJ-123456"
+        >
 
 
-    <div class="user-info">
-
-        <strong id="welcomeName">
-            Welcome
-        </strong>
-
-        <span id="welcomeContact"></span>
-
-    </div>
+        <button onclick="checkTicket()">
+            Check Status
+        </button>
 
 
-    <!-- WEEKLY -->
-
-    <h2 class="section-title">
-        Weekly Membership
-    </h2>
-
-    <div class="plan-grid">
-
-
-        <div class="plan">
-
-            <span class="plan-type">
-                Weekly
-            </span>
-
-            <h3>Starter</h3>
-
-            <div class="price">₹50</div>
-
-            <ul>
-                <li>7-day membership</li>
-                <li>Member support</li>
-            </ul>
-
-            <a
-                class="pay-btn"
-                href="https://rzp.io/rzp/BHYMkuN"
-                target="_blank"
-                rel="noopener"
-            >
-                Pay ₹50
-            </a>
-
+        <div
+            id="statusMessage"
+            class="message">
         </div>
 
 
-        <div class="plan">
+        <div
+            id="ticketDetails"
+            class="ticket">
 
-            <span class="plan-type">
-                Weekly
-            </span>
+            <p>
+                <strong>Ticket ID:</strong>
+                <span id="displayId"></span>
+            </p>
 
-            <h3>Standard</h3>
-
-            <div class="price">₹100</div>
-
-            <ul>
-                <li>7-day membership</li>
-                <li>Priority support</li>
-            </ul>
-
-            <a
-                class="pay-btn"
-                href="https://rzp.io/rzp/HA3J194Z"
-                target="_blank"
-                rel="noopener"
-            >
-                Pay ₹100
-            </a>
-
-        </div>
+            <p style="margin-top:10px;">
+                <strong>Subject:</strong>
+                <span id="displaySubject"></span>
+            </p>
 
 
-        <div class="plan">
-
-            <span class="plan-type">
-                Weekly
-            </span>
-
-            <h3>Plus</h3>
-
-            <div class="price">₹200</div>
-
-            <ul>
-                <li>7-day membership</li>
-                <li>Extra resources</li>
-            </ul>
-
-            <a
-                class="pay-btn"
-                href="https://rzp.io/rzp/VnyJD0j"
-                target="_blank"
-                rel="noopener"
-            >
-                Pay ₹200
-            </a>
-
-        </div>
+            <div
+                id="statusBadge"
+                class="status">
+            </div>
 
 
-        <div class="plan">
+            <div class="reply">
 
-            <span class="plan-type">
-                Weekly
-            </span>
+                <div class="reply-title">
+                    💬 Admin Reply
+                </div>
 
-            <h3>Pro</h3>
+                <div id="adminReply">
+                    No reply yet.
+                </div>
 
-            <div class="price">₹500</div>
-
-            <ul>
-                <li>7-day membership</li>
-                <li>Premium resources</li>
-            </ul>
-
-            <a
-                class="pay-btn"
-                href="https://rzp.io/rzp/dxZbJvJo"
-                target="_blank"
-                rel="noopener"
-            >
-                Pay ₹500
-            </a>
+            </div>
 
         </div>
 
     </div>
 
-
-    <!-- MONTHLY -->
-
-    <h2 class="section-title">
-        Monthly Membership
-    </h2>
-
-    <div class="plan-grid">
-
-
-        <div class="plan">
-
-            <span class="plan-type">
-                Monthly
-            </span>
-
-            <h3>Basic</h3>
-
-            <div class="price">₹100</div>
-
-            <ul>
-                <li>30-day membership</li>
-                <li>Member support</li>
-            </ul>
-
-            <a
-                class="pay-btn"
-                href="https://rzp.io/rzp/FyS7XzH"
-                target="_blank"
-                rel="noopener"
-            >
-                Pay ₹100
-            </a>
-
-        </div>
-
-
-        <div class="plan">
-
-            <span class="plan-type">
-                Monthly
-            </span>
-
-            <h3>Standard</h3>
-
-            <div class="price">₹200</div>
-
-            <ul>
-                <li>30-day membership</li>
-                <li>Extra resources</li>
-            </ul>
-
-            <a
-                class="pay-btn"
-                href="https://rzp.io/rzp/jkulf4O"
-                target="_blank"
-                rel="noopener"
-            >
-                Pay ₹200
-            </a>
-
-        </div>
-
-
-        <div class="plan">
-
-            <span class="plan-type">
-                Monthly
-            </span>
-
-            <h3>Premium</h3>
-
-            <div class="price">₹500</div>
-
-            <ul>
-                <li>30-day membership</li>
-                <li>Premium resources</li>
-            </ul>
-
-            <a
-                class="pay-btn"
-                href="https://rzp.io/rzp/xSMVjDb"
-                target="_blank"
-                rel="noopener"
-            >
-                Pay ₹500
-            </a>
-
-        </div>
-
-
-        <div class="plan">
-
-            <span class="plan-type">
-                Monthly
-            </span>
-
-            <h3>Pro</h3>
-
-            <div class="price">₹700</div>
-
-            <ul>
-                <li>30-day membership</li>
-                <li>Premium resources</li>
-            </ul>
-
-            <a
-                class="pay-btn"
-                href="https://rzp.io/rzp/wE8Tehkc"
-                target="_blank"
-                rel="noopener"
-            >
-                Pay ₹700
-            </a>
-
-        </div>
-
-    </div>
-
-</main>
-
-
-<footer>
-    © 2026 Protocol Job · Membership & Services
-</footer>
+</div>
 
 
 <script>
 
+/*
+|--------------------------------------------------------------------------
+| BACKEND URL
+|--------------------------------------------------------------------------
+|
+| If index.html and server.js are deployed together:
+|
+| const API_BASE = "";
+|
+| If server.js is deployed separately:
+|
+| const API_BASE = "https://YOUR-SERVER-URL";
+|
+*/
+
+const API_BASE = "";
+
+
+/*
+|--------------------------------------------------------------------------
+| CREATE TICKET
+|--------------------------------------------------------------------------
+*/
+
 document
-.getElementById("userForm")
-.addEventListener("submit", function(event){
+.getElementById("ticketForm")
+.addEventListener("submit", async function(e){
 
-    event.preventDefault();
-
-
-    const name =
-        document
-        .getElementById("name")
-        .value
-        .trim();
-
-    const email =
-        document
-        .getElementById("email")
-        .value
-        .trim();
-
-    const phone =
-        document
-        .getElementById("phone")
-        .value
-        .trim();
+    e.preventDefault();
 
 
-    if(!/^[0-9]{10}$/.test(phone)){
-
-        alert(
-            "Please enter a valid 10-digit phone number."
+    const message =
+        document.getElementById(
+            "createMessage"
         );
+
+    const newTicket =
+        document.getElementById(
+            "newTicket"
+        );
+
+
+    message.style.display="none";
+    newTicket.style.display="none";
+
+
+    const data = {
+
+        name:
+            document.getElementById(
+                "name"
+            ).value.trim(),
+
+        email:
+            document.getElementById(
+                "email"
+            ).value.trim(),
+
+        phone:
+            document.getElementById(
+                "phone"
+            ).value.trim(),
+
+        subject:
+            document.getElementById(
+                "subject"
+            ).value.trim(),
+
+        message:
+            document.getElementById(
+                "message"
+            ).value.trim()
+
+    };
+
+
+    try{
+
+        const response =
+            await fetch(
+                API_BASE +
+                "/api/tickets",
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                        "application/json"
+                    },
+
+                    body:
+                    JSON.stringify(data)
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if(!response.ok){
+
+            throw new Error(
+                result.error ||
+                "Unable to create ticket"
+            );
+
+        }
+
+
+        document
+        .getElementById(
+            "newTicketId"
+        )
+        .textContent =
+            result.ticketId;
+
+
+        newTicket.style.display="block";
+
+
+        document
+        .getElementById(
+            "ticketForm"
+        )
+        .reset();
+
+
+    }catch(error){
+
+        message.textContent =
+            error.message ||
+            "Server error. Please try again.";
+
+        message.className =
+            "message error";
+
+        message.style.display="block";
+
+    }
+
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| CHECK TICKET
+|--------------------------------------------------------------------------
+*/
+
+async function checkTicket(){
+
+    const ticketId =
+        document
+        .getElementById(
+            "ticketId"
+        )
+        .value
+        .trim();
+
+
+    const message =
+        document
+        .getElementById(
+            "statusMessage"
+        );
+
+
+    const details =
+        document
+        .getElementById(
+            "ticketDetails"
+        );
+
+
+    message.style.display="none";
+    details.style.display="none";
+
+
+    if(!ticketId){
+
+        message.textContent =
+            "Please enter your Ticket ID.";
+
+        message.className =
+            "message error";
+
+        message.style.display="block";
 
         return;
     }
 
 
-    document
-    .getElementById("welcomeName")
-    .textContent =
-        "Welcome, " + name;
+    try{
+
+        const response =
+            await fetch(
+                API_BASE +
+                "/api/tickets/" +
+                encodeURIComponent(
+                    ticketId
+                )
+            );
 
 
-    document
-    .getElementById("welcomeContact")
-    .textContent =
-        email + " • " + phone;
+        const result =
+            await response.json();
 
 
-    document
-    .getElementById("formPage")
-    .style.display = "none";
+        if(!response.ok){
+
+            throw new Error(
+                result.error ||
+                "Ticket not found"
+            );
+
+        }
 
 
-    document
-    .getElementById("paymentPage")
-    .style.display = "block";
+        document
+        .getElementById(
+            "displayId"
+        )
+        .textContent =
+            result.ticketId;
 
 
-    window.scrollTo(0,0);
+        document
+        .getElementById(
+            "displaySubject"
+        )
+        .textContent =
+            result.subject;
 
-});
+
+        const badge =
+            document.getElementById(
+                "statusBadge"
+            );
+
+
+        badge.textContent =
+            getStatusText(
+                result.status
+            );
+
+
+        badge.className =
+            "status " +
+            getStatusClass(
+                result.status
+            );
+
+
+        document
+        .getElementById(
+            "adminReply"
+        )
+        .textContent =
+            result.adminReply ||
+            "No reply yet.";
+
+
+        details.style.display="block";
+
+
+    }catch(error){
+
+        message.textContent =
+            error.message ||
+            "Unable to find ticket.";
+
+        message.className =
+            "message error";
+
+        message.style.display="block";
+
+    }
+
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| STATUS
+|--------------------------------------------------------------------------
+*/
+
+function getStatusText(status){
+
+    switch(status){
+
+        case "open":
+            return "🟢 Open";
+
+        case "in_progress":
+            return "🟡 In Progress";
+
+        case "resolved":
+            return "🔵 Resolved";
+
+        case "closed":
+            return "🔴 Closed";
+
+        default:
+            return "🟢 Open";
+
+    }
+
+}
+
+
+function getStatusClass(status){
+
+    switch(status){
+
+        case "open":
+            return "open";
+
+        case "in_progress":
+            return "progress";
+
+        case "resolved":
+            return "resolved";
+
+        case "closed":
+            return "closed";
+
+        default:
+            return "open";
+
+    }
+
+}
 
 </script>
 
