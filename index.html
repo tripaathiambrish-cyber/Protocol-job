@@ -1,1 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2563eb">
+<title>Protocol Job</title>
 
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#eef4ff,#f8fafc);
+    color:#172033;
+    min-height:100vh;
+}
+
+.container{
+    width:100%;
+    max-width:760px;
+    margin:auto;
+    padding:25px 14px 100px;
+}
+
+.card{
+    background:#fff;
+    border:1px solid #e5e7eb;
+    border-radius:22px;
+    padding:24px;
+    margin-bottom:20px;
+    box-shadow:0 15px 40px rgba(15,23,42,.08);
+}
+
+.brand{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.logo{
+    width:60px;
+    height:60px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:18px;
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+    color:#fff;
+    font-size:25px;
+    font-weight:800;
+    box-shadow:0 10px 25px rgba(37,99,235,.25);
+}
+
+.brand h1{
+    margin-top:12px;
+    font-size:29px;
+}
+
+.brand p{
+    margin-top:6px;
+    color:#64748b;
+    font-size:14px;
+}
+
+.section-title{
+    font-size:22px;
+    font-weight:800;
+    margin-bottom:7px;
+}
+
+.section-subtitle{
+    color:#64748b;
+    font-size:14px;
+    line-height:1.5;
+    margin-bottom:20px;
+}
+
+.form-group{
+    margin-bottom:17px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-size:14px;
+    font-weight:700;
+}
+
+.input{
+    width:100%;
+    height:52px;
+    padding:0 15px;
+    border:1px solid #dbe2ea;
+    border-radius:12px;
+    background:#f8fafc;
+    outline:none;
+    font-size:15px;
+}
+
+.input:focus{
+    background:#fff;
+    border-color:#2563eb;
+    box-shadow:0 0 0 4px rgba(37,99,235,.1);
+}
+
+.terms{
+    padding:17px;
+    margin-top:18px;
+    border:1px solid #e2e8f0;
+    border-radius:15px;
+    background:#f8fafc;
+}
+
+.terms h3{
+    font-size:16px;
+    margin-bottom:8px;
+}
+
+.terms p{
+    color:#64748b;
+    font-size:13px;
+    line-height:1.6;
+    margin:5px 0;
+}
+
+.agree{
+    display:flex;
+    align-items:flex-start;
+    gap:9px;
+    margin-top:13px;
+    cursor:pointer;
+}
+
+.agree input{
+    width:18px;
+    height:18px;
+    margin-top:2px;
+    accent-color:#2563eb;
+}
+
+.agree span{
+    font-size:13px;
+    line-height:1.5;
+    font-weight:600;
+}
+
+.primary-btn{
+    width:100%;
+    height:53px;
+    margin-top:18px;
+    border:0;
+    border-radius:13px;
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+    color:#fff;
+    font-size:15px;
+    font-weight:800;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(37,99,235,.22);
+}
+
+.primary-btn:hover{
+    opacity:.94;
+}
+
+.message{
+    display:none;
+    padding:12px;
+    margin-top:13px;
+    border-radius:10px;
+    font-size:13px;
+}
+
+.error{
+    background:#fef2f2;
+    color:#b91c1c;
+    border:1px solid #fecaca;
+}
+
+.success{
+    background:#f0fdf4;
+    color:#15803d;
+    border:1px solid #bbf7d0;
+}
+
+#paymentSection{
+    display:none;
+}
+
+.divider{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:22px;
+    color:#94a3b8;
+    font-size:12px;
+    font-weight:700;
+}
+
+.divider:before,
+.divider:after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:#e2e8f0;
+}
+
+.payment-title{
+    text-align:center;
+    font-size:24px;
+    font-weight:800;
+}
+
+.payment-subtitle{
+    text-align:center;
+    color:#64748b;
+    font-size:14px;
+    margin:7px 0 22px;
+}
+
+.plan-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:13px;
+}
+
+.plan{
+    padding:17px;
+    border:1px solid #e2e8f0;
+    border-radius:16px;
+    background:#fff;
+}
+
+.plan-price{
+    font-size:24px;
+    font-weight:800;
+}
+
+.plan-type{
+    color:#64748b;
+    font-size:12px;
+    margin-top:5px;
+}
+
+.pay-btn{
+    width:100%;
+    padding:11px;
+    margin-top:13px;
+    border:0;
+    border-radius:10px;
+    background:#111827;
+    color:#fff;
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.pay-btn:hover{
+    background:#2563eb;
+}
+
+.support-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.support-title{
+    font-size:21px;
+    font-weight:800;
+}
+
+.support-subtitle{
+    color:#64748b;
+    font-size:13px;
+    margin-top:5px;
+}
+
+.online{
+    padding:6px 10px;
+    border-radius:20px;
+    background:#f0fdf4;
+    color:#15803d;
+    font-size:11px;
+    font-weight:700;
+}
+
+.ticket-box{
+    padding:18px;
+    border:1px solid #e2e8f0;
+    border-radius:16px;
+    background:#f8fafc;
+}
+
+.ticket-box h3{
+    font-size:17px;
+    margin-bottom:15px;
+}
+
+.status{
+    padding:12px;
+    margin-top:12px;
+    border-radius:10px;
+    background:#fff;
+    border:1px solid #e2e8f0;
+    font-size:13px;
+    font-weight:700;
+}
+
+.float-support{
+    position:fixed;
+    right:16px;
+    bottom:16px;
+    z-index:9999;
+    padding:13px 17px;
+    border:0;
+    border-radius:50px;
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+    color:#fff;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:800;
+    box-shadow:0 10px 25px rgba(37,99,235,.3);
+}
+
+.footer{
+    text-align:center;
+    color:#94a3b8;
+    font-size:12px;
+}
+
+@media(max-width:560px){
+    .container{
+        padding:18px 12px 90px;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    .plan-grid{
+        grid-template-columns:1fr;
+    }
+
+    .float-support{
+        right:12px;
+        bottom:12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container"><div class="card" id="registrationSection">
+
+    <div class="brand">
+        <div class="logo">PJ</div>
+
+        <h1>Protocol Job</h1>
+
+        <p>
+            Register your details to continue
+        </p>
+    </div>
+
+    <div class="section-title">
+        Create Your Account
+    </div>
+
+    <div class="section-subtitle">
+        Enter your correct details before continuing
+        to the membership plans.
+    </div>
+
+    <form id="registrationForm">
+
+        <div class="form-group">
+            <label for="name">Full Name</label>
+
+            <input
+                class="input"
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Enter your full name"
+                autocomplete="name"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address</label>
+
+            <input
+                class="input"
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Enter your email address"
+                autocomplete="email"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+
+            <input
+                class="input"
+                id="phone"
+                name="phone"
+                type="tel"
+                placeholder="Enter 10 digit mobile number"
+                maxlength="10"
+                minlength="10"
+                pattern="[0-9]{10}"
+                inputmode="numeric"
+                autocomplete="tel"
+                required
+            >
+        </div>
+
+        <div class="terms">
+
+            <h3>Terms & Conditions</h3>
+
+            <p>
+                Please provide accurate information while
+                submitting the registration form.
+            </p>
+
+            <p>
+                Please review the selected membership and
+                payment details before completing payment.
+            </p>
+
+            <p>
+                Refund requests, where applicable, are
+                subject to the applicable refund policy
+                and verification.
+            </p>
+
+            <label class="agree">
+
+                <input
+                    type="checkbox"
+                    id="terms"
+                    name="terms"
+                    required
+                >
+
+                <span>
+                    I agree to the Terms & Conditions
+                    and Refund Policy.
+                </span>
+
+            </label>
+
+        </div>
+
+        <button
+            type="submit"
+            class="primary-btn"
+        >
+            Submit & Continue
+        </button>
+
+        <div
+            id="formError"
+            class="message error"
+        ></div>
+
+        <div
+            id="formSuccess"
+            class="message success"
+        ></div>
+
+    </form>
+
+</div>
+  <div class="card" id="paymentSection">
+
+    <div class="divider">
+        <span>Membership Plans</span>
+    </div>
+
+    <div class="payment-title">
+        Choose Your Membership
+    </div>
+
+    <div class="payment-subtitle">
+        Select a plan and continue securely with payment.
+    </div>
+
+    <div class="ticket-box">
+
+        <h3>Weekly Membership</h3>
+
+        <div class="plan-grid">
+
+            <div class="plan">
+                <div class="plan-price">₹50</div>
+                <div class="plan-type">Weekly Membership</div>
+
+                <button
+                    type="button"
+                    class="pay-btn"
+                    onclick="openPayment('https://rzp.io/rzp/BHYMkuN')"
+                >
+                    Pay ₹50
+                </button>
+            </div>
+
+            <div class="plan">
+                <div class="plan-price">₹100</div>
+                <div class="plan-type">Weekly Membership</div>
+
+                <button
+                    type="button"
+                    class="pay-btn"
+                    onclick="openPayment('https://rzp.io/rzp/HA3J194Z')"
+                >
+                    Pay ₹100
+                </button>
+            </div>
+
+            <div class="plan">
+                <div class="plan-price">₹200</div>
+                <div class="plan-type">Weekly Membership</div>
+
+                <button
+                    type="button"
+                    class="pay-btn"
+                    onclick="openPayment('https://rzp.io/rzp/VnyJD0j')"
+                >
+                    Pay ₹200
+                </button>
+            </div>
+
+            <div class="plan">
+                <div class="plan-price">₹500</div>
+                <div class="plan-type">Weekly Membership</div>
+
+                <button
+                    type="button"
+                    class="pay-btn"
+                    onclick="openPayment('https://rzp.io/rzp/dxZbJvJo')"
+                >
+                    Pay ₹500
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="ticket-box" style="margin-top:15px;">
+
+        <h3>Monthly Membership</h3>
+
+        <div class="plan-grid">
+
+            <div class="plan">
+                <div class="plan-price">₹100</div>
+                <div class="plan-type">Monthly Membership</div>
+
+                <button
+                    type="button"
+                    class="pay-btn"
+                    onclick="openPayment('https://rzp.io/rzp/FyS7XzH')"
+                >
+                    Pay ₹100
+                </button>
+            </div>
+
+            <div class="plan">
+                <div class="plan-price">₹200</div>
+                <div class="plan-type">Monthly Membership</div>
+
+                <button
+                    type="button"
+                    class="pay-btn"
+                    onclick="openPayment('https://rzp.io/rzp/jkulf4O')"
+                >
+                    Pay ₹200
+                </button>
+            </div>
+
+            <div class="plan">
+                <div class="plan-price">₹500</div>
+                <div class="plan-type">Monthly Membership</div>
+
+                <button
+                    type="button"
+                    class="pay-btn"
+                    onclick="openPayment('https://rzp.io/rzp/xSMVjDb')"
+                >
+                    Pay ₹500
+                </button>
+            </div>
+
+            <div class="plan">
+                <div class="plan-price">₹700</div>
+                <div class="plan-type">Monthly Membership</div>
+
+                <button
+                    type="button"
+                    class="pay-btn"
+                    onclick="openPayment('https://rzp.io/rzp/wE8Tehkc')"
+                >
+                    Pay ₹700
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+  </div>
+  
+  <div class="card" id="supportSection">
+
+    <div class="support-header">
+
+        <div>
+            <div class="support-title">
+                Customer Support
+            </div>
+
+            <div class="support-subtitle">
+                Need help? Create a support ticket.
+            </div>
+        </div>
+
+        <div class="online">
+            ● Online
+        </div>
+
+    </div>
+
+
+    <div class="ticket-box">
+
+        <h3>
+            Create Support Ticket
+        </h3>
+
+        <form id="ticketForm">
+
+            <div class="form-group">
+
+                <label for="ticketName">
+                    Your Name
+                </label>
+
+                <input
+                    class="input"
+                    id="ticketName"
+                    type="text"
+                    placeholder="Enter your name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="ticketEmail">
+                    Email Address
+                </label>
+
+                <input
+                    class="input"
+                    id="ticketEmail"
+                    type="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="ticketSubject">
+                    Subject
+                </label>
+
+                <input
+                    class="input"
+                    id="ticketSubject"
+                    type="text"
+                    placeholder="What do you need help with?"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="ticketMessage">
+                    Message
+                </label>
+
+                <textarea
+                    class="input"
+                    id="ticketMessage"
+                    placeholder="Describe your issue..."
+                    style="height:120px;padding:14px;resize:vertical;"
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="primary-btn"
+            >
+                Create Support Ticket
+            </button>
+
+
+            <div
+                id="ticketSuccess"
+                class="message success"
+            ></div>
+
+
+            <div
+                id="ticketError"
+                class="message error"
+            ></div>
+
+        </form>
+
+    </div>
+
+
+    <div
+        class="ticket-box"
+        id="ticketStatusBox"
+        style="display:none;margin-top:15px;"
+    >
+
+        <h3>
+            Your Ticket
+        </h3>
+
+        <div
+            class="status"
+            id="ticketIdDisplay"
+        >
+            🎫 Ticket ID:
+        </div>
+
+        <div
+            class="status"
+            id="ticketStatusDisplay"
+        >
+            🟢 Open
+        </div>
+
+        <div
+            class="status"
+            id="adminReplyDisplay"
+        >
+            💬 Admin Reply: Waiting for admin response
+        </div>
+
+    </div>
+
+</div>
+
+
+<a
+    href="#supportSection"
+    class="float-support"
+>
+    💬 Customer Support
+  
+</a>
+  <script>
+
+const registrationForm =
+    document.getElementById("registrationForm");
+
+const paymentSection =
+    document.getElementById("paymentSection");
+
+const formError =
+    document.getElementById("formError");
+
+const formSuccess =
+    document.getElementById("formSuccess");
+
+
+registrationForm.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+    formError.style.display = "none";
+    formSuccess.style.display = "none";
+
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const phone =
+        document.getElementById("phone").value.trim();
+
+    const terms =
+        document.getElementById("terms").checked;
+
+
+    if(name === ""){
+
+        showFormError("Please enter your full name.");
+
+        return;
+    }
+
+
+    if(email === ""){
+
+        showFormError("Please enter your email address.");
+
+        return;
+    }
+
+
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+
+        showFormError("Please enter a valid email address.");
+
+        return;
+    }
+
+
+    if(!/^[0-9]{10}$/.test(phone)){
+
+        showFormError(
+            "Please enter a valid 10 digit phone number."
+        );
+
+        return;
+    }
+
+
+    if(!terms){
+
+        showFormError(
+            "Please accept the Terms & Conditions and Refund Policy."
+        );
+
+        return;
+    }
+
+
+    formSuccess.textContent =
+        "Registration completed. Please select a membership plan below.";
+
+    formSuccess.style.display = "block";
+
+
+    paymentSection.style.display = "block";
+
+
+    setTimeout(function(){
+
+        paymentSection.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+
+    },100);
+
+});
+
+
+function showFormError(message){
+
+    formError.textContent = message;
+
+    formError.style.display = "block";
+
+}
+
+
+/* PAYMENT */
+
+function openPayment(url){
+
+    if(!url){
+        return;
+    }
+
+    window.location.href = url;
+
+}
+
+
+/* SUPPORT TICKET */
+
+const ticketForm =
+    document.getElementById("ticketForm");
+
+const ticketSuccess =
+    document.getElementById("ticketSuccess");
+
+const ticketError =
+    document.getElementById("ticketError");
+
+const ticketStatusBox =
+    document.getElementById("ticketStatusBox");
+
+const ticketIdDisplay =
+    document.getElementById("ticketIdDisplay");
+
+const ticketStatusDisplay =
+    document.getElementById("ticketStatusDisplay");
+
+const adminReplyDisplay =
+    document.getElementById("adminReplyDisplay");
+
+
+ticketForm.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+    ticketSuccess.style.display = "none";
+    ticketError.style.display = "none";
+
+
+    const name =
+        document.getElementById("ticketName")
+        .value
+        .trim();
+
+    const email =
+        document.getElementById("ticketEmail")
+        .value
+        .trim();
+
+    const subject =
+        document.getElementById("ticketSubject")
+        .value
+        .trim();
+
+    const message =
+        document.getElementById("ticketMessage")
+        .value
+        .trim();
+
+
+    if(!name || !email || !subject || !message){
+
+        ticketError.textContent =
+            "Please fill all support ticket fields.";
+
+        ticketError.style.display = "block";
+
+        return;
+    }
+
+
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+
+        ticketError.textContent =
+            "Please enter a valid email address.";
+
+        ticketError.style.display = "block";
+
+        return;
+    }
+
+
+    const ticketId =
+        "PJ-" +
+        Date.now()
+        .toString()
+        .slice(-8);
+
+
+    ticketIdDisplay.textContent =
+        "🎫 Ticket ID: " + ticketId;
+
+
+    ticketStatusDisplay.textContent =
+        "🟢 Status: Open";
+
+
+    adminReplyDisplay.textContent =
+        "💬 Admin Reply: Waiting for admin response";
+
+
+    ticketStatusBox.style.display = "block";
+
+
+    ticketSuccess.textContent =
+        "Your support ticket has been created successfully. " +
+        "Ticket ID: " + ticketId;
+
+
+    ticketSuccess.style.display = "block";
+
+
+    ticketForm.reset();
+
+
+    ticketStatusBox.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+
+});
+
+  </script>
+  <div class="card">
+    <div class="footer">
+        © 2026 Protocol Job. All rights reserved.
+    </div>
+</div>
+
+</div>
+
+</body>
+</html>
+  
