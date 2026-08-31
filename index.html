@@ -3,147 +3,388 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Checkout & Support</title>
+    <title>Elite Membership Portal</title>
     
     <style>
+        :root {
+            --bg-deep: #090d16;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --accent-primary: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.4);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
         }
 
         body {
-            background-color: #0f172a;
-            color: #f8fafc;
+            background-color: var(--bg-deep);
+            background-image: 
+                radial-gradient(at 10% 20%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 90% 80%, rgba(14, 165, 233, 0.1) 0px, transparent 50%);
+            color: var(--text-main);
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
         }
 
         .main-container {
             width: 100%;
-            max-width: 480px;
-            margin: 40px auto;
-            padding: 24px;
-            background: #1e293b;
-            border-radius: 20px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            max-width: 460px;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            padding: 32px;
+            border-radius: 28px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
         }
 
-        :root {
-            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-            --primary-hover: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
-            --shadow-premium: 0 12px 30px -5px rgba(79, 70, 229, 0.5);
+        .step-box {
+            display: none;
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* Bada aur Premium Pay Button Styling */
-        .pay-btn, #payButton, .payment-action-btn {
+        .step-box.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .live-announcement {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #34d399;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%;
-            padding: 18px 24px;
-            font-size: 18px;
+            gap: 8px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #34d399;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #34d399;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+
+        h2 {
+            font-size: 24px;
             font-weight: 700;
-            letter-spacing: 0.8px;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
             color: #ffffff;
-            background: var(--primary-gradient);
+            text-align: center;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            color: #cbd5e1;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            color: #fff;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 4px var(--accent-glow);
+        }
+
+        .plan-category {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #38bdf8;
+            margin: 20px 0 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .plan-category::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .plan-card {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 14px 18px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .plan-card:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            transform: translateY(-2px);
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .plan-info .price {
+            font-size: 18px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .plan-info .type {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .primary-btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffffff;
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
             border: none;
             border-radius: 14px;
-            box-shadow: var(--shadow-premium);
             cursor: pointer;
+            box-shadow: 0 10px 25px -5px var(--accent-glow);
             transition: all 0.3s ease;
-            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
         }
 
-        .pay-btn:hover, #payButton:hover {
-            background: var(--primary-hover);
+        .primary-btn:hover {
             transform: translateY(-2px);
+            filter: brightness(1.1);
         }
 
-        .ticket-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        .float-support {
-            position: fixed;
-            right: 12px;
-            bottom: 12px;
-            background: #2563eb;
-            color: white;
-            padding: 12px 18px;
-            border-radius: 50px;
+        .pay-now-btn {
+            padding: 10px 18px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffff;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border: none;
+            border-radius: 12px;
             cursor: pointer;
-            font-weight: 600;
-            z-index: 1000;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .pay-now-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .support-box {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
         }
     </style>
-</head>
-    <body>
+</head><body>
 
     <div class="main-container">
-        <h2>Checkout Portal</h2>
-        <p style="color: #94a3b8; font-size: 14px; margin-top: 5px;">Complete your transaction securely.</p>
-
-        <!-- Ticket Actions Section -->
-        <div id="ticketActions" class="ticket-actions">
-            <!-- Bada aur Premium Pay Button -->
-            <button type="button" id="payButton" class="pay-btn">
-                <span>Pay Now (Secure)</span>
-            </button>
+        
+        <!-- STEP 1: USER FORM -->
+        <div id="stepForm" class="step-box active">
+            <h2>Welcome</h2>
+            <p class="subtitle">Enter your details to view membership plans.</p>
+            <form id="userForm" onsubmit="submitForm(event)">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="userName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="userPhone" placeholder="Enter phone number" required>
+                </div>
+                <div class="form-group">
+                    <label>Email ID</label>
+                    <input type="email" id="userEmail" placeholder="Enter email address" required>
+                </div>
+                <button type="submit" class="primary-btn" style="margin-top: 8px;">Submit & Proceed</button>
+            </form>
         </div>
+
+        <!-- STEP 2: MEMBERSHIP PAYMENT PAGE + LIVE ANNOUNCEMENT -->
+        <div id="stepPayment" class="step-box">
+            
+            <!-- Live Announcement Bar -->
+            <div class="live-announcement">
+                <div class="live-dot"></div>
+                <span id="liveAnnouncementText">Member active & ready for checkout!</span>
+            </div>
+
+            <h2>Membership Plans</h2>
+            <p class="subtitle">Choose your preferred plan below.</p>
+
+            <!-- WEEKLY MEMBERSHIP PLANS -->
+            <div class="plan-category">Weekly Membership</div>
+
+            <div class="plan-card">
+                <div class="plan-info">
+                    <div class="price">₹50</div>
+                    <div class="type">Weekly Membership</div>
+                </div>
+                <a href="https://rzp.io/rzp/4vqH6KK9" target="_blank" class="pay-now-btn">Pay Now</a>
+            </div>
+
+            <div class="plan-card">
+                <div class="plan-info">
+                    <div class="price">₹100</div>
+                    <div class="type">Weekly Membership</div>
+                </div>
+                <a href="https://rzp.io/rzp/HA3J194Z" target="_blank" class="pay-now-btn">Pay Now</a>
+            </div>
+
+            <div class="plan-card">
+                <div class="plan-info">
+                    <div class="price">₹200</div>
+                    <div class="type">Weekly Membership</div>
+                </div>
+                <a href="https://rzp.io/rzp/VnyJD0j" target="_blank" class="pay-now-btn">Pay Now</a>
+            </div>
+
+            <div class="plan-card">
+                <div class="plan-info">
+                    <div class="price">₹500</div>
+                    <div class="type">Weekly Membership</div>
+                </div>
+                <a href="https://rzp.io/rzp/dxZbJvJo" target="_blank" class="pay-now-btn">Pay Now</a>
+            </div>
+
+            <!-- MONTHLY MEMBERSHIP PLANS -->
+            <div class="plan-category">Monthly Membership</div>
+
+            <div class="plan-card">
+                <div class="plan-info">
+                    <div class="price">₹100</div>
+                    <div class="type">Monthly Membership</div>
+                </div>
+                <a href="https://rzp.io/rzp/FyS7XzH" target="_blank" class="pay-now-btn">Pay Now</a>
+            </div>
+
+            <div class="plan-card">
+                <div class="plan-info">
+                    <div class="price">₹200</div>
+                    <div class="type">Monthly Membership</div>
+                </div>
+                <a href="https://rzp.io/rzp/jkulf4O" target="_blank" class="pay-now-btn">Pay Now</a>
+            </div>
+
+            <div class="plan-card">
+                <div class="plan-info">
+                    <div class="price">₹500</div>
+                    <div class="type">Monthly Membership</div>
+                </div>
+                <a href="https://rzp.io/rzp/xSMVjDb" target="_blank" class="pay-now-btn">Pay Now</a>
+            </div>
+
+            <div class="plan-card">
+                <div class="plan-info">
+                    <div class="price">₹700</div>
+                    <div class="type">Monthly Membership</div>
+                </div>
+                <a href="https://rzp.io/rzp/wE8Tehkc" target="_blank" class="pay-now-btn">Pay Now</a>
+            </div>
+
+            <!-- CONTACT SUPPORT SECTION -->
+            <div class="support-box">
+                <a href="mailto:supportprotocool@gmail.com" class="primary-btn" style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);">Contact Support</a>
+            </div>
+        </div>
+
     </div>
-
-    <!-- Floating Support Widget -->
-    <div class="float-support">
-        Support
-    </div>
-            <script>
-    /*
-     * Automatically hide the ticket action buttons
-     * when there is no saved ticket.
-     */
-
-    function updateTicketActions(){
-        const actions = document.getElementById("ticketActions");
-        const ticketId = localStorage.getItem("protocol_ticket_id");
-
-        if(actions){
-            actions.style.display = ticketId ? "flex" : "none";
+    
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById("userName").value;
+            const phone = document.getElementById("userPhone").value;
+            const email = document.getElementById("userEmail").value;
+            
+            localStorage.setItem("user_name", name);
+            localStorage.setItem("user_phone", phone);
+            localStorage.setItem("user_email", email);
+            localStorage.setItem("form_submitted", "true");
+            
+            showPaymentPage(name);
         }
-    }
 
-    updateTicketActions();
-
-    /*
-     * Update buttons whenever localStorage changes.
-     */
-    window.addEventListener(
-        "storage",
-        updateTicketActions
-    );
-
-    /*
-     * Keep ticket actions visible after
-     * a ticket is successfully created.
-     */
-    const originalSetItem = localStorage.setItem;
-
-    localStorage.setItem = function(key, value){
-        originalSetItem.call(this, key, value);
-
-        if(key === "protocol_ticket_id"){
-            updateTicketActions();
+        function showPaymentPage(name) {
+            document.getElementById("stepForm").classList.remove("active");
+            document.getElementById("stepPayment").classList.add("active");
+            
+            const announcementEl = document.getElementById("liveAnnouncementText");
+            if (name) {
+                announcementEl.innerText = `${name} is viewing active membership plans!`;
+            }
         }
-    };
+
+        window.addEventListener("DOMContentLoaded", () => {
+            const isSubmitted = localStorage.getItem("form_submitted");
+            const savedName = localStorage.getItem("user_name");
+            
+            if (isSubmitted) {
+                showPaymentPage(savedName);
+            }
+        });
     </script>
 
 </body>
 </html>
-
-        
