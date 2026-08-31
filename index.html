@@ -357,7 +357,7 @@
         </div>
 
     </div>
-        <script>
+            <script>
         function submitForm(event) {
             event.preventDefault();
             
@@ -365,11 +365,12 @@
             const phone = document.getElementById("userPhone").value;
             const email = document.getElementById("userEmail").value;
             
+            // User details ko live announcement ke liye store karna
             localStorage.setItem("user_name", name);
             localStorage.setItem("user_phone", phone);
             localStorage.setItem("user_email", email);
-            localStorage.setItem("form_submitted", "true");
             
+            // Form hide karke payment page dikhana
             showPaymentPage(name);
         }
 
@@ -382,15 +383,6 @@
                 announcementEl.innerText = `${name} is viewing active membership plans!`;
             }
         }
-
-        window.addEventListener("DOMContentLoaded", () => {
-            const isSubmitted = localStorage.getItem("form_submitted");
-            const savedName = localStorage.getItem("user_name");
-            
-            if (isSubmitted) {
-                showPaymentPage(savedName);
-            }
-        });
     </script>
 
 </body>
