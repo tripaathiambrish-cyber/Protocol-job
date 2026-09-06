@@ -185,6 +185,18 @@
             margin-top: 2px;
         }
 
+        .offer-tag {
+            font-size: 10px;
+            color: #f59e0b;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
         .primary-btn {
             width: 100%;
             padding: 14px;
@@ -261,8 +273,7 @@
                 By continuing, you agree to our Terms & Conditions and Refund Policy.
             </div>
         </div>
-
-        <!-- STEP 2: MEMBERSHIP PAYMENT PAGE -->
+                <!-- STEP 2: MEMBERSHIP PAYMENT PAGE -->
         <div id="stepPayment" class="step-box">
             
             <!-- Live Announcement Bar -->
@@ -281,6 +292,7 @@
                 <div class="plan-info">
                     <div class="price">Pay ₹600</div>
                     <div class="type">Get ₹ 2200 Weekly</div>
+                    <div class="offer-tag">Limited Time Offer: End in 2 Days</div>
                 </div>
                 <a href="https://rzp.io/rzp/hQ4qOK4" target="_blank" class="pay-now-btn">Pay Now</a>
             </div>
@@ -296,7 +308,8 @@
             <div class="plan-card">
                 <div class="plan-info">
                     <div class="price">Pay ₹200</div>
-                    <div class="type">Get ₹400 Weekly</div>
+                    <div class="type">Get ₹650 Weekly</div>
+                    <div class="offer-tag">Limited Time Offer: End in 2 Days</div>
                 </div>
                 <a href="https://rzp.io/rzp/VnyJD0j" target="_blank" class="pay-now-btn">Pay Now</a>
             </div>
@@ -357,7 +370,8 @@
         </div>
 
     </div>
-            <script>
+
+    <script>
         function submitForm(event) {
             event.preventDefault();
             
@@ -365,12 +379,10 @@
             const phone = document.getElementById("userPhone").value;
             const email = document.getElementById("userEmail").value;
             
-            // User details ko live announcement ke liye store karna
             localStorage.setItem("user_name", name);
             localStorage.setItem("user_phone", phone);
             localStorage.setItem("user_email", email);
             
-            // Form hide karke payment page dikhana
             showPaymentPage(name);
         }
 
