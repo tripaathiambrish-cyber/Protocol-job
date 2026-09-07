@@ -50,21 +50,27 @@
             position: relative;
         }
 
+        .top-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            gap: 10px;
+        }
+
         .wallet-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
             background: rgba(16, 185, 129, 0.15);
             border: 1px solid rgba(16, 185, 129, 0.4);
             color: #34d399;
-            padding: 6px 12px;
+            padding: 6px 14px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: 700;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 6px;
             box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+            white-space: nowrap;
         }
 
         .step-box {
@@ -89,12 +95,12 @@
             border-radius: 12px;
             font-size: 12px;
             font-weight: 600;
-            margin-bottom: 16px;
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
+            flex: 1;
         }
 
         .live-announcement {
@@ -285,8 +291,10 @@
         
         <!-- STEP 1: USER FORM -->
         <div id="stepForm" class="step-box active">
-            <div class="trusted-badge">
-                ⭐ Trusted by 50k+ users
+            <div class="top-header-row" style="margin-bottom: 20px;">
+                <div class="trusted-badge">
+                    ⭐ Trusted by 50k+ users
+                </div>
             </div>
             <h2>Welcome</h2>
             <p class="subtitle">Enter your details to view membership plans.</p>
@@ -310,17 +318,18 @@
                 By continuing, you agree to our Terms & Conditions and Refund Policy.
             </div>
         </div>
-                <!-- STEP 2: MEMBERSHIP PAYMENT PAGE -->
+
+        <!-- STEP 2: MEMBERSHIP PAYMENT PAGE -->
         <div id="stepPayment" class="step-box">
             
-            <!-- Real Wallet Badge at Top Right -->
-            <div class="wallet-badge">
-                <span>💰 Wallet: <span id="walletBalance">₹0</span></span>
-            </div>
-
-            <!-- Trusted Badge in Golden/Premium Color -->
-            <div class="trusted-badge">
-                ⭐ Trusted by 50k+ users
+            <!-- Top Header Row containing Trusted Badge & Wallet Badge properly aligned -->
+            <div class="top-header-row">
+                <div class="trusted-badge">
+                    ⭐ Trusted by 50k+ users
+                </div>
+                <div class="wallet-badge">
+                    <span>💰 Wallet: <span id="walletBalance">₹0</span></span>
+                </div>
             </div>
 
             <!-- Live Announcement Bar -->
@@ -408,7 +417,6 @@
             <div class="support-box">
                 <a href="mailto:supportprotocool@gmail.com" class="primary-btn" style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); margin-bottom: 14px;">Contact Support</a>
                 
-                <!-- Terms & Conditions / Refund Policy Details -->
                 <div style="font-size: 11px; color: var(--text-muted); line-height: 1.5; text-align: left;">
                     <p style="margin-bottom: 4px;"><strong style="color: #f8fafc;">Terms & Conditions:</strong> By using our platform, you agree to abide by all community rules and verification guidelines.</p>
                     <p><strong style="color: #ef4444;">Refund Policy:</strong> All sales are final. Refunds are processed only in case of duplicate billing or system errors within 3-5 business days.</p>
@@ -417,8 +425,7 @@
         </div>
 
     </div>
-
-    <script>
+        <script>
         function submitForm(event) {
             event.preventDefault();
             
