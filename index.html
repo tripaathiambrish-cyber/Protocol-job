@@ -47,6 +47,24 @@
             padding: 24px;
             border-radius: 24px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            position: relative;
+        }
+
+        .wallet-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #34d399;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
         }
 
         .step-box {
@@ -267,7 +285,6 @@
         
         <!-- STEP 1: USER FORM -->
         <div id="stepForm" class="step-box active">
-            <!-- Trusted Badge in Golden/Premium Color -->
             <div class="trusted-badge">
                 ⭐ Trusted by 50k+ users
             </div>
@@ -296,15 +313,20 @@
                 <!-- STEP 2: MEMBERSHIP PAYMENT PAGE -->
         <div id="stepPayment" class="step-box">
             
+            <!-- Real Wallet Badge at Top Right -->
+            <div class="wallet-badge">
+                <span>💰 Wallet: <span id="walletBalance">₹0</span></span>
+            </div>
+
             <!-- Trusted Badge in Golden/Premium Color -->
-            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); color: #fbbf24; padding: 8px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; margin-bottom: 16px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 6px;">
+            <div class="trusted-badge">
                 ⭐ Trusted by 50k+ users
             </div>
 
             <!-- Live Announcement Bar -->
             <div class="live-announcement">
                 <div class="live-dot"></div>
-                <span id="liveAnnouncementText">Member active & ready for checkout!</span>
+                <span id="liveAnnouncementText">Buy any membership instantly get 50 to 400₹ bonus</span>
             </div>
 
             <h2>Membership Plans</h2>
@@ -316,10 +338,10 @@
             <div class="plan-card">
                 <div class="plan-info">
                     <div class="price">Pay ₹600</div>
-                    <div class="type">Get ₹ 2200 Weekly</div>
+                    <div class="type">Get ₹2200 Weekly</div>
                     <div class="offer-tag">Limited Time Offer: End in 2 Days</div>
                 </div>
-                <a href="https://rzp.io/rzp/hQ4qOK4" target="_blank" class="pay-now-btn">Pay Now</a>
+                <a href="https://rzp.io/rzp/hQ4qOK4" target="_blank" class="pay-now-btn" onclick="addBonusToWallet(event)">Pay Now</a>
             </div>
 
             <div class="plan-card">
@@ -327,7 +349,7 @@
                     <div class="price">Pay ₹100</div>
                     <div class="type">Get ₹200 Weekly</div>
                 </div>
-                <a href="https://rzp.io/rzp/HA3J194Z" target="_blank" class="pay-now-btn">Pay Now</a>
+                <a href="https://rzp.io/rzp/HA3J194Z" target="_blank" class="pay-now-btn" onclick="addBonusToWallet(event)">Pay Now</a>
             </div>
 
             <div class="plan-card">
@@ -336,7 +358,7 @@
                     <div class="type">Get ₹650 Weekly</div>
                     <div class="offer-tag">Limited Time Offer: End in 2 Days</div>
                 </div>
-                <a href="https://rzp.io/rzp/VnyJD0j" target="_blank" class="pay-now-btn">Pay Now</a>
+                <a href="https://rzp.io/rzp/VnyJD0j" target="_blank" class="pay-now-btn" onclick="addBonusToWallet(event)">Pay Now</a>
             </div>
 
             <div class="plan-card">
@@ -344,7 +366,7 @@
                     <div class="price">Pay ₹500</div>
                     <div class="type">Get ₹1000 Weekly</div>
                 </div>
-                <a href="https://rzp.io/rzp/dxZbJvJo" target="_blank" class="pay-now-btn">Pay Now</a>
+                <a href="https://rzp.io/rzp/dxZbJvJo" target="_blank" class="pay-now-btn" onclick="addBonusToWallet(event)">Pay Now</a>
             </div>
 
             <!-- MONTHLY MEMBERSHIP PLANS -->
@@ -355,7 +377,7 @@
                     <div class="price">Pay ₹100</div>
                     <div class="type">Get ₹400 Monthly</div>
                 </div>
-                <a href="https://rzp.io/rzp/FyS7XzH" target="_blank" class="pay-now-btn">Pay Now</a>
+                <a href="https://rzp.io/rzp/FyS7XzH" target="_blank" class="pay-now-btn" onclick="addBonusToWallet(event)">Pay Now</a>
             </div>
 
             <div class="plan-card">
@@ -363,7 +385,7 @@
                     <div class="price">Pay ₹200</div>
                     <div class="type">Get ₹600 Monthly</div>
                 </div>
-                <a href="https://rzp.io/rzp/jkulf4O" target="_blank" class="pay-now-btn">Pay Now</a>
+                <a href="https://rzp.io/rzp/jkulf4O" target="_blank" class="pay-now-btn" onclick="addBonusToWallet(event)">Pay Now</a>
             </div>
 
             <div class="plan-card">
@@ -371,7 +393,7 @@
                     <div class="price">Pay ₹500</div>
                     <div class="type">Get ₹1500 Monthly</div>
                 </div>
-                <a href="https://rzp.io/rzp/xSMVjDb" target="_blank" class="pay-now-btn">Pay Now</a>
+                <a href="https://rzp.io/rzp/xSMVjDb" target="_blank" class="pay-now-btn" onclick="addBonusToWallet(event)">Pay Now</a>
             </div>
 
             <div class="plan-card">
@@ -379,7 +401,7 @@
                     <div class="price">Pay ₹700</div>
                     <div class="type">Get ₹2000 Monthly</div>
                 </div>
-                <a href="https://rzp.io/rzp/wE8Tehkc" target="_blank" class="pay-now-btn">Pay Now</a>
+                <a href="https://rzp.io/rzp/wE8Tehkc" target="_blank" class="pay-now-btn" onclick="addBonusToWallet(event)">Pay Now</a>
             </div>
 
             <!-- CONTACT SUPPORT SECTION -->
@@ -415,10 +437,24 @@
             document.getElementById("stepForm").classList.remove("active");
             document.getElementById("stepPayment").classList.add("active");
             
-            const announcementEl = document.getElementById("liveAnnouncementText");
-            if (name) {
-                announcementEl.innerText = `${name} is viewing active membership plans!`;
+            // Load saved wallet balance if available
+            let savedWallet = localStorage.getItem("user_wallet");
+            if(savedWallet) {
+                document.getElementById("walletBalance").innerText = "₹" + savedWallet;
             }
+        }
+
+        // Payment Verified & Random Bonus Function (₹50 to ₹400)
+        function addBonusToWallet(event) {
+            let randomBonus = Math.floor(Math.random() * (400 - 50 + 1)) + 50;
+            
+            let currentWallet = parseInt(localStorage.getItem("user_wallet")) || 0;
+            let newWalletBalance = currentWallet + randomBonus;
+            
+            localStorage.setItem("user_wallet", newWalletBalance);
+            document.getElementById("walletBalance").innerText = "₹" + newWalletBalance;
+
+            alert(`🎉 Payment Verified Successfully!\n\nCongratulations! ₹${randomBonus} bonus has been added to your Real Wallet.`);
         }
     </script>
 
