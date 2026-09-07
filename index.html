@@ -63,6 +63,22 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        .trusted-badge {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: #fbbf24;
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
         .live-announcement {
             background: rgba(16, 185, 129, 0.1);
             border: 1px solid rgba(16, 185, 129, 0.3);
@@ -251,6 +267,10 @@
         
         <!-- STEP 1: USER FORM -->
         <div id="stepForm" class="step-box active">
+            <!-- Trusted Badge in Golden/Premium Color -->
+            <div class="trusted-badge">
+                ⭐ Trusted by 50k+ users
+            </div>
             <h2>Welcome</h2>
             <p class="subtitle">Enter your details to view membership plans.</p>
             <form id="userForm" onsubmit="submitForm(event)">
@@ -276,6 +296,11 @@
                 <!-- STEP 2: MEMBERSHIP PAYMENT PAGE -->
         <div id="stepPayment" class="step-box">
             
+            <!-- Trusted Badge in Golden/Premium Color -->
+            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); color: #fbbf24; padding: 8px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; margin-bottom: 16px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                ⭐ Trusted by 50k+ users
+            </div>
+
             <!-- Live Announcement Bar -->
             <div class="live-announcement">
                 <div class="live-dot"></div>
