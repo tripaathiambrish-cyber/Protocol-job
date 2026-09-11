@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elite Membership Portal</title>
-    <!-- PWA Manifest support for mobile installation -->
+    <!-- PWA Manifest for Mobile App Installation Support -->
     <link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22Elite%20Membership%22%2C%22short_name%22%3A%22Elite%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23090d16%22%2C%22theme_color%22%3A%22%236366f1%22%7D">
     
     <style>
@@ -227,6 +227,18 @@
             margin-top: 2px;
         }
 
+        .offer-tag {
+            font-size: 10px;
+            color: #f59e0b;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
         .primary-btn {
             width: 100%;
             padding: 14px;
@@ -309,7 +321,7 @@
             </form>
             
             <div style="text-align: center; margin-top: 16px; font-size: 11px; color: var(--text-muted);">
-                By continuing, you agree to our Terms & Conditions.
+                By continuing, you agree to our Terms & Conditions and Refund Policy.
             </div>
         </div>
 
@@ -325,7 +337,7 @@
 
             <div class="live-announcement">
                 <div class="live-dot"></div>
-                <span>Pay via Google Pay & Click Verify to claim bonus!</span>
+                <span id="liveAnnouncementText">Pay via Google Pay & Click Verify to claim bonus!</span>
             </div>
 
             <!-- PROMO CODE SECTION -->
@@ -347,6 +359,7 @@
                 <div class="plan-info">
                     <div class="price">Pay ₹600</div>
                     <div class="type">Get ₹2200 Weekly</div>
+                    <div class="offer-tag">Limited Time Offer: End in 2 Days</div>
                 </div>
                 <a href="https://rzp.io/rzp/hQ4qOK4" target="_blank" class="pay-now-btn" onclick="setPendingPayment('₹600')">Pay Now</a>
             </div>
@@ -363,8 +376,52 @@
                 <div class="plan-info">
                     <div class="price">Pay ₹200</div>
                     <div class="type">Get ₹650 Weekly</div>
+                    <div class="offer-tag">Limited Time Offer: End in 2 Days</div>
                 </div>
                 <a href="https://rzp.io/rzp/VnyJD0j" target="_blank" class="pay-now-btn" onclick="setPendingPayment('₹200')">Pay Now</a>
+            </div>
+
+            <div class="plan-card">
+                <div class="plan-info">
+                    <div class="price">Pay ₹500</div>
+                    <div class="type">Get ₹1000 Weekly</div>
+                </div>
+                <a href="https://rzp.io/rzp/dxZbJvJo" target="_blank" class="pay-now-btn" onclick="setPendingPayment('₹500')">Pay Now</a>
+            </div>
+
+            <!-- MONTHLY MEMBERSHIP PLANS -->
+            <div class="plan-category">Monthly Membership</div>
+
+            <div class="plan-card">
+                <div class="plan-info">
+                    <div class="price">Pay ₹100</div>
+                    <div class="type">Get ₹400 Monthly</div>
+                </div>
+                <a href="https://rzp.io/rzp/FyS7XzH" target="_blank" class="pay-now-btn" onclick="setPendingPayment('₹100')">Pay Now</a>
+            </div>
+
+            <div class="plan-card">
+                <div class="plan-info">
+                    <div class="price">Pay ₹200</div>
+                    <div class="type">Get ₹600 Monthly</div>
+                </div>
+                <a href="https://rzp.io/rzp/jkulf4O" target="_blank" class="pay-now-btn" onclick="setPendingPayment('₹200')">Pay Now</a>
+            </div>
+
+            <div class="plan-card">
+                <div class="plan-info">
+                    <div class="price">Pay ₹500</div>
+                    <div class="type">Get ₹1500 Monthly</div>
+                </div>
+                <a href="https://rzp.io/rzp/xSMVjDb" target="_blank" class="pay-now-btn" onclick="setPendingPayment('₹500')">Pay Now</a>
+            </div>
+
+            <div class="plan-card">
+                <div class="plan-info">
+                    <div class="price">Pay ₹700</div>
+                    <div class="type">Get ₹2000 Monthly</div>
+                </div>
+                <a href="https://rzp.io/rzp/wE8Tehkc" target="_blank" class="pay-now-btn" onclick="setPendingPayment('₹700')">Pay Now</a>
             </div>
 
             <!-- VERIFY PAYMENT SECTION (Appears after clicking Pay Now) -->
@@ -376,6 +433,11 @@
             <!-- CONTACT SUPPORT SECTION -->
             <div class="support-box">
                 <a href="mailto:supportprotocool@gmail.com" class="primary-btn" style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); margin-bottom: 14px;">Contact Support</a>
+                
+                <div style="font-size: 11px; color: var(--text-muted); line-height: 1.5; text-align: left;">
+                    <p style="margin-bottom: 4px;"><strong style="color: #f8fafc;">Terms & Conditions:</strong> By using our platform, you agree to abide by all community rules and verification guidelines.</p>
+                    <p><strong style="color: #ef4444;">Refund Policy:</strong> All sales are final. Refunds are processed only in case of duplicate billing or system errors within 3-5 business days.</p>
+                </div>
             </div>
         </div>
 
@@ -383,6 +445,7 @@
         <script>
         function submitForm(event) {
             event.preventDefault();
+            
             const name = document.getElementById("userName").value;
             const phone = document.getElementById("userPhone").value;
             const email = document.getElementById("userEmail").value;
@@ -404,16 +467,15 @@
             }
         }
 
-        // 1. Jab user 'Pay Now' dabaye, tab system note kar le ki payment pending hai
+        // 1. Jab user kisi bhi 'Pay Now' par click karega, verification box open hoga
         function setPendingPayment(amount) {
             localStorage.setItem("pending_payment", amount);
-            // Thodi der baad verify button dikhaye taaki user payment karke wapas aa sake
             setTimeout(() => {
                 document.getElementById("verifySection").style.display = "block";
             }, 1000);
         }
 
-        // 2. Jab user payment karke wapas aakar 'Verify Payment' par click karega
+        // 2. Secure Verification & One-Time Bonus Lock (Baar-baar click karne par bonus nahi milega)
         function verifyAndClaimBonus() {
             let hasClaimed = localStorage.getItem("bonus_claimed");
 
@@ -429,24 +491,23 @@
                 return;
             }
 
-            // Random bonus between 50 to 400
             let randomBonus = Math.floor(Math.random() * (400 - 50 + 1)) + 50;
             let currentWallet = parseInt(localStorage.getItem("user_wallet")) || 0;
             let newWalletBalance = currentWallet + randomBonus;
             
             localStorage.setItem("user_wallet", newWalletBalance);
-            localStorage.setItem("bonus_claimed", "yes"); // Lock kar diya taaki dobara bonus na mile
+            localStorage.setItem("bonus_claimed", "yes"); // Lock lag gaya taaki dobara bonus na mile
             localStorage.removeItem("pending_payment");
 
             document.getElementById("walletBalance").innerText = "₹" + newWalletBalance;
             document.getElementById("verifySection").style.display = "none";
 
-            alert(`🎉 Payment Successfully Verified via Google Pay!\n\nCongratulations! ₹${randomBonus} bonus has been added to your Wallet.`);
+            alert(`🎉 Payment Verified Successfully via Google Pay!\n\nCongratulations! ₹${randomBonus} bonus has been added to your Real Wallet.`);
         }
 
-        // 3. Promo Code Logic
+        // 3. Promo Code Logic (Jaise code: BONUS2026 ya ELITE100)
         function applyPromoCode() {
-            let code = document.getElementById("promoInput").value.trim();
+            let code = document.getElementById("promoInput").value.trim().toUpperCase();
             let promoUsed = localStorage.getItem("promo_used");
 
             if (promoUsed === "yes") {
@@ -466,7 +527,7 @@
                 alert(`🎉 Promo Code Applied! ₹${promoBonus} added to your wallet.`);
                 document.getElementById("promoInput").value = "";
             } else {
-                alert("❌ Invalid Promo Code!");
+                alert("❌ Invalid Promo Code! Please enter a valid code.");
             }
         }
     </script>
