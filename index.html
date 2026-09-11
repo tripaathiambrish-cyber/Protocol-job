@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elite Membership Portal</title>
+    <!-- PWA Manifest support for mobile installation -->
+    <link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22Elite%20Membership%22%2C%22short_name%22%3A%22Elite%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23090d16%22%2C%22theme_color%22%3A%22%236366f1%22%7D">
     
     <style>
         :root {
@@ -225,18 +227,6 @@
             margin-top: 2px;
         }
 
-        .offer-tag {
-            font-size: 10px;
-            color: #f59e0b;
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            padding: 2px 6px;
-            border-radius: 4px;
-            display: inline-block;
-            margin-top: 4px;
-            font-weight: 600;
-        }
-
         .primary-btn {
             width: 100%;
             padding: 14px;
@@ -277,6 +267,12 @@
             transform: scale(0.95);
         }
 
+        .verify-btn {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+            margin-top: 10px;
+        }
+
         .support-box {
             margin-top: 20px;
             padding-top: 16px;
@@ -292,9 +288,7 @@
         <!-- STEP 1: USER FORM -->
         <div id="stepForm" class="step-box active">
             <div class="top-header-row" style="margin-bottom: 20px;">
-                <div class="trusted-badge">
-                    ⭐ Trusted by 50k+ users
-                </div>
+                <div class="trusted-badge">⭐ Trusted by 50k+ users</div>
             </div>
             <h2>Welcome</h2>
             <p class="subtitle">Enter your details to view membership plans.</p>
@@ -315,27 +309,32 @@
             </form>
             
             <div style="text-align: center; margin-top: 16px; font-size: 11px; color: var(--text-muted);">
-                By continuing, you agree to our Terms & Conditions and Refund Policy.
+                By continuing, you agree to our Terms & Conditions.
             </div>
         </div>
 
         <!-- STEP 2: MEMBERSHIP PAYMENT PAGE -->
         <div id="stepPayment" class="step-box">
             
-            <!-- Top Header Row containing Trusted Badge & Wallet Badge properly aligned -->
             <div class="top-header-row">
-                <div class="trusted-badge">
-                    ⭐ Trusted by 50k+ users
-                </div>
+                <div class="trusted-badge">⭐ Trusted by 50k+ users</div>
                 <div class="wallet-badge">
                     <span>💰 Wallet: <span id="walletBalance">₹0</span></span>
                 </div>
             </div>
 
-            <!-- Live Announcement Bar -->
             <div class="live-announcement">
                 <div class="live-dot"></div>
-                <span id="liveAnnouncementText">Buy any membership instantly get 50 to 400₹ bonus</span>
+                <span>Pay via Google Pay & Click Verify to claim bonus!</span>
+            </div>
+
+            <!-- PROMO CODE SECTION -->
+            <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.3); padding: 12px; border-radius: 14px; margin-bottom: 20px;">
+                <label style="color: #a5b4fc; margin-bottom: 6px;">Have a Promo Code?</label>
+                <div style="display: flex; gap: 8px;">
+                    <input type="text" id="promoInput" placeholder="Enter Promo Code" style="padding: 10px 14px; font-size: 13px;">
+                    <button type="button" onclick="applyPromoCode()" style="background: #6366f1; color: white; border: none; padding: 0 16px; border-radius: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">Apply</button>
+                </div>
             </div>
 
             <h2>Membership Plans</h2>
@@ -348,9 +347,8 @@
                 <div class="plan-info">
                     <div class="price">Pay ₹600</div>
                     <div class="type">Get ₹2200 Weekly</div>
-                    <div class="offer-tag">Limited Time Offer: End in 2 Days</div>
                 </div>
-                <a href="https://rzp.io/rzp/hQ4qOK4" target="_blank" class="pay-now-btn" onclick="addBonusToWallet(event)">Pay Now</a>
+                <a href="https://rzp.io/rzp/hQ4qOK4" target="_blank" class="pay-now-btn" onclick="setPendingPayment('₹600')">Pay Now</a>
             </div>
 
             <div class="plan-card">
@@ -358,69 +356,26 @@
                     <div class="price">Pay ₹100</div>
                     <div class="type">Get ₹200 Weekly</div>
                 </div>
-                <a href="https://rzp.io/rzp/HA3J194Z" target="_blank" class="pay-now-btn" onclick="addBonusToWallet(event)">Pay Now</a>
+                <a href="https://rzp.io/rzp/HA3J194Z" target="_blank" class="pay-now-btn" onclick="setPendingPayment('₹100')">Pay Now</a>
             </div>
 
             <div class="plan-card">
                 <div class="plan-info">
                     <div class="price">Pay ₹200</div>
                     <div class="type">Get ₹650 Weekly</div>
-                    <div class="offer-tag">Limited Time Offer: End in 2 Days</div>
                 </div>
-                <a href="https://rzp.io/rzp/VnyJD0j" target="_blank" class="pay-now-btn" onclick="addBonusToWallet(event)">Pay Now</a>
+                <a href="https://rzp.io/rzp/VnyJD0j" target="_blank" class="pay-now-btn" onclick="setPendingPayment('₹200')">Pay Now</a>
             </div>
 
-            <div class="plan-card">
-                <div class="plan-info">
-                    <div class="price">Pay ₹500</div>
-                    <div class="type">Get ₹1000 Weekly</div>
-                </div>
-                <a href="https://rzp.io/rzp/dxZbJvJo" target="_blank" class="pay-now-btn" onclick="addBonusToWallet(event)">Pay Now</a>
-            </div>
-
-            <!-- MONTHLY MEMBERSHIP PLANS -->
-            <div class="plan-category">Monthly Membership</div>
-
-            <div class="plan-card">
-                <div class="plan-info">
-                    <div class="price">Pay ₹100</div>
-                    <div class="type">Get ₹400 Monthly</div>
-                </div>
-                <a href="https://rzp.io/rzp/FyS7XzH" target="_blank" class="pay-now-btn" onclick="addBonusToWallet(event)">Pay Now</a>
-            </div>
-
-            <div class="plan-card">
-                <div class="plan-info">
-                    <div class="price">Pay ₹200</div>
-                    <div class="type">Get ₹600 Monthly</div>
-                </div>
-                <a href="https://rzp.io/rzp/jkulf4O" target="_blank" class="pay-now-btn" onclick="addBonusToWallet(event)">Pay Now</a>
-            </div>
-
-            <div class="plan-card">
-                <div class="plan-info">
-                    <div class="price">Pay ₹500</div>
-                    <div class="type">Get ₹1500 Monthly</div>
-                </div>
-                <a href="https://rzp.io/rzp/xSMVjDb" target="_blank" class="pay-now-btn" onclick="addBonusToWallet(event)">Pay Now</a>
-            </div>
-
-            <div class="plan-card">
-                <div class="plan-info">
-                    <div class="price">Pay ₹700</div>
-                    <div class="type">Get ₹2000 Monthly</div>
-                </div>
-                <a href="https://rzp.io/rzp/wE8Tehkc" target="_blank" class="pay-now-btn" onclick="addBonusToWallet(event)">Pay Now</a>
+            <!-- VERIFY PAYMENT SECTION (Appears after clicking Pay Now) -->
+            <div id="verifySection" style="display: none; margin-top: 15px; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); padding: 14px; border-radius: 14px; text-align: center;">
+                <p style="font-size: 12px; color: #fbbf24; margin-bottom: 10px;">Did you complete the payment via Google Pay?</p>
+                <button type="button" class="primary-btn verify-btn" onclick="verifyAndClaimBonus()">✔ Verify Payment & Claim Bonus</button>
             </div>
 
             <!-- CONTACT SUPPORT SECTION -->
             <div class="support-box">
                 <a href="mailto:supportprotocool@gmail.com" class="primary-btn" style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); margin-bottom: 14px;">Contact Support</a>
-                
-                <div style="font-size: 11px; color: var(--text-muted); line-height: 1.5; text-align: left;">
-                    <p style="margin-bottom: 4px;"><strong style="color: #f8fafc;">Terms & Conditions:</strong> By using our platform, you agree to abide by all community rules and verification guidelines.</p>
-                    <p><strong style="color: #ef4444;">Refund Policy:</strong> All sales are final. Refunds are processed only in case of duplicate billing or system errors within 3-5 business days.</p>
-                </div>
             </div>
         </div>
 
@@ -428,7 +383,6 @@
         <script>
         function submitForm(event) {
             event.preventDefault();
-            
             const name = document.getElementById("userName").value;
             const phone = document.getElementById("userPhone").value;
             const email = document.getElementById("userEmail").value;
@@ -437,33 +391,84 @@
             localStorage.setItem("user_phone", phone);
             localStorage.setItem("user_email", email);
             
-            showPaymentPage(name);
+            showPaymentPage();
         }
 
-        function showPaymentPage(name) {
+        function showPaymentPage() {
             document.getElementById("stepForm").classList.remove("active");
             document.getElementById("stepPayment").classList.add("active");
             
-            // Load saved wallet balance if available
             let savedWallet = localStorage.getItem("user_wallet");
             if(savedWallet) {
                 document.getElementById("walletBalance").innerText = "₹" + savedWallet;
             }
         }
 
-        // Payment Verified & Random Bonus Function (₹50 to ₹400)
-        function addBonusToWallet(event) {
+        // 1. Jab user 'Pay Now' dabaye, tab system note kar le ki payment pending hai
+        function setPendingPayment(amount) {
+            localStorage.setItem("pending_payment", amount);
+            // Thodi der baad verify button dikhaye taaki user payment karke wapas aa sake
+            setTimeout(() => {
+                document.getElementById("verifySection").style.display = "block";
+            }, 1000);
+        }
+
+        // 2. Jab user payment karke wapas aakar 'Verify Payment' par click karega
+        function verifyAndClaimBonus() {
+            let hasClaimed = localStorage.getItem("bonus_claimed");
+
+            if (hasClaimed === "yes") {
+                alert("❌ You have already claimed your one-time payment bonus!");
+                document.getElementById("verifySection").style.display = "none";
+                return;
+            }
+
+            let pendingPlan = localStorage.getItem("pending_payment");
+            if (!pendingPlan) {
+                alert("❌ Please click 'Pay Now' and complete the payment first!");
+                return;
+            }
+
+            // Random bonus between 50 to 400
             let randomBonus = Math.floor(Math.random() * (400 - 50 + 1)) + 50;
-            
             let currentWallet = parseInt(localStorage.getItem("user_wallet")) || 0;
             let newWalletBalance = currentWallet + randomBonus;
             
             localStorage.setItem("user_wallet", newWalletBalance);
-            document.getElementById("walletBalance").innerText = "₹" + newWalletBalance;
+            localStorage.setItem("bonus_claimed", "yes"); // Lock kar diya taaki dobara bonus na mile
+            localStorage.removeItem("pending_payment");
 
-            alert(`🎉 Payment Verified Successfully!\n\nCongratulations! ₹${randomBonus} bonus has been added to your Real Wallet.`);
+            document.getElementById("walletBalance").innerText = "₹" + newWalletBalance;
+            document.getElementById("verifySection").style.display = "none";
+
+            alert(`🎉 Payment Successfully Verified via Google Pay!\n\nCongratulations! ₹${randomBonus} bonus has been added to your Wallet.`);
+        }
+
+        // 3. Promo Code Logic
+        function applyPromoCode() {
+            let code = document.getElementById("promoInput").value.trim();
+            let promoUsed = localStorage.getItem("promo_used");
+
+            if (promoUsed === "yes") {
+                alert("❌ You have already used a promo code!");
+                return;
+            }
+
+            if (code === "BONUS2026" || code === "ELITE100") {
+                let promoBonus = 150;
+                let currentWallet = parseInt(localStorage.getItem("user_wallet")) || 0;
+                let newWalletBalance = currentWallet + promoBonus;
+
+                localStorage.setItem("user_wallet", newWalletBalance);
+                localStorage.setItem("promo_used", "yes");
+                document.getElementById("walletBalance").innerText = "₹" + newWalletBalance;
+
+                alert(`🎉 Promo Code Applied! ₹${promoBonus} added to your wallet.`);
+                document.getElementById("promoInput").value = "";
+            } else {
+                alert("❌ Invalid Promo Code!");
+            }
         }
     </script>
-
 </body>
 </html>
