@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Membership Portal</title>
-    <!-- PWA Manifest for Mobile App Installation Support -->
-    <link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22Elite%20Membership%22%2C%22short_name%22%3A%22Elite%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23090d16%22%2C%22theme_color%22%3A%22%236366f1%22%7D">
+    <title>Elite Membership Portal - ProtocolJob</title>
+    <!-- PWA Meta Tags for Mobile Installation -->
+    <meta name="theme-color" content="#090d16">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
     <style>
         :root {
@@ -19,9 +21,7 @@
         }
 
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            margin: 0; padding: 0; box-sizing: border-box;
             font-family: 'Inter', 'Segoe UI', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
@@ -40,411 +40,162 @@
         }
 
         .main-container {
-            width: 100%;
-            max-width: 460px;
+            width: 100%; max-width: 460px;
             background: var(--card-bg);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--border-glass);
-            padding: 24px;
-            border-radius: 24px;
+            padding: 24px; border-radius: 24px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-            position: relative;
         }
 
         .top-header-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-            gap: 10px;
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; gap: 10px;
         }
 
         .wallet-badge {
             background: rgba(16, 185, 129, 0.15);
             border: 1px solid rgba(16, 185, 129, 0.4);
-            color: #34d399;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
-            white-space: nowrap;
+            color: #34d399; padding: 6px 14px; border-radius: 20px;
+            font-size: 12px; font-weight: 700; white-space: nowrap;
         }
 
-        .step-box {
-            display: none;
-            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        .step-box { display: none; }
+        .step-box.active { display: block; }
+
+        .telegram-banner {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            color: #ffffff; padding: 12px 16px; border-radius: 14px;
+            font-size: 14px; font-weight: 700; margin-bottom: 16px;
+            text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px;
+            text-decoration: none; box-shadow: 0 8px 20px rgba(14, 165, 233, 0.3);
         }
 
-        .step-box.active {
-            display: block;
+        .promo-section {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 14px; border-radius: 14px; margin-bottom: 16px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .promo-row { display: flex; gap: 8px; margin-top: 6px; }
+        .promo-input {
+            flex: 1; padding: 10px 12px; font-size: 13px;
+            background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px; color: #fff; outline: none;
+        }
+        .promo-btn {
+            padding: 10px 16px; background: #f59e0b; color: #000;
+            font-weight: 700; font-size: 13px; border: none; border-radius: 10px; cursor: pointer;
         }
 
-        .trusted-badge {
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            color: #fbbf24;
-            padding: 8px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            flex: 1;
-        }
-
-        .live-announcement {
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            color: #34d399;
-            padding: 10px 14px;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .live-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #34d399;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #34d399;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(0.95); opacity: 0.8; }
-            50% { transform: scale(1.2); opacity: 1; }
-            100% { transform: scale(0.95); opacity: 0.8; }
-        }
-
-        h2 {
-            font-size: 22px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 6px;
-            color: #ffffff;
-            text-align: center;
-        }
-
-        .subtitle {
-            color: var(--text-muted);
-            font-size: 13px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        label {
-            display: block;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            color: #cbd5e1;
-        }
-
+        h2 { font-size: 22px; font-weight: 700; margin-bottom: 6px; color: #ffffff; text-align: center; }
+        .subtitle { color: var(--text-muted); font-size: 13px; margin-bottom: 20px; text-align: center; }
+        
         input {
-            width: 100%;
-            padding: 14px 16px;
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 14px;
-            color: #fff;
-            font-size: 15px;
-            outline: none;
-            transition: all 0.3s ease;
+            width: 100%; padding: 14px 16px; background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; color: #fff; font-size: 15px; outline: none;
         }
-
-        input:focus {
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 4px var(--accent-glow);
-        }
-
+        
         .plan-category {
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #38bdf8;
-            margin: 20px 0 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+            color: #38bdf8; margin: 20px 0 10px 0; display: flex; align-items: center; gap: 10px;
         }
-
-        .plan-category::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.1);
-        }
+        .plan-category::after { content: ''; flex: 1; height: 1px; background: rgba(255, 255, 255, 0.1); }
 
         .plan-card {
-            background: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 16px;
-            padding: 14px 16px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
+            background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px; padding: 14px 16px; margin-bottom: 10px;
+            display: flex; justify-content: space-between; align-items: center; gap: 10px;
         }
-
-        .plan-info .price {
-            font-size: 16px;
-            font-weight: 800;
-            color: #ffffff;
-        }
-
-        .plan-info .type {
-            font-size: 12px;
-            color: #34d399;
-            font-weight: 600;
-            margin-top: 2px;
-        }
-
-        .offer-tag {
-            font-size: 10px;
-            color: #f59e0b;
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            padding: 2px 6px;
-            border-radius: 4px;
-            display: inline-block;
-            margin-top: 4px;
-            font-weight: 600;
-        }
-
+        .plan-info .price { font-size: 16px; font-weight: 800; color: #ffffff; }
+        .plan-info .type { font-size: 12px; color: #34d399; font-weight: 600; margin-top: 2px; }
+        
         .primary-btn {
-            width: 100%;
-            padding: 14px;
-            font-size: 15px;
-            font-weight: 700;
-            color: #ffffff;
+            width: 100%; padding: 14px; font-size: 15px; font-weight: 700; color: #ffffff;
             background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-            border: none;
-            border-radius: 14px;
-            cursor: pointer;
-            box-shadow: 0 10px 25px -5px var(--accent-glow);
-            transition: all 0.3s ease;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
+            border: none; border-radius: 14px; cursor: pointer; text-align: center; text-decoration: none; display: inline-block;
         }
-
-        .primary-btn:hover {
-            filter: brightness(1.1);
-        }
-
         .pay-now-btn {
-            padding: 10px 16px;
-            font-size: 13px;
-            font-weight: 700;
-            color: #ffffff;
+            padding: 10px 16px; font-size: 13px; font-weight: 700; color: #ffffff;
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            text-decoration: none;
-            white-space: nowrap;
-            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
-            transition: transform 0.2s ease;
-        }
-
-        .pay-now-btn:active {
-            transform: scale(0.95);
-        }
-
-        .verify-btn {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
-            margin-top: 10px;
-        }
-
-        .support-box {
-            margin-top: 20px;
-            padding-top: 16px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            text-align: center;
+            border: none; border-radius: 12px; text-decoration: none; white-space: nowrap;
         }
     </style>
 </head>
-<body>
-
+    <body>
     <div class="main-container">
         
-        <!-- STEP 1: USER FORM -->
+        <!-- STEP 1: USER LOGIN FORM -->
         <div id="stepForm" class="step-box active">
-            <div class="top-header-row" style="margin-bottom: 20px;">
-                <div class="trusted-badge">⭐ Trusted by 50k+ users</div>
-            </div>
             <h2>Welcome</h2>
             <p class="subtitle">Enter your details to view membership plans.</p>
             <form id="userForm" onsubmit="submitForm(event)">
-                <div class="form-group">
-                    <label>Name</label>
+                <div style="margin-bottom: 16px;">
+                    <label style="font-size: 12px; color: #cbd5e1; margin-bottom: 8px; display: block;">NAME</label>
                     <input type="text" id="userName" placeholder="Enter your full name" required>
                 </div>
-                <div class="form-group">
-                    <label>Phone Number</label>
+                <div style="margin-bottom: 16px;">
+                    <label style="font-size: 12px; color: #cbd5e1; margin-bottom: 8px; display: block;">PHONE NUMBER</label>
                     <input type="tel" id="userPhone" placeholder="Enter phone number" required>
                 </div>
-                <div class="form-group">
-                    <label>Email ID</label>
+                <div style="margin-bottom: 16px;">
+                    <label style="font-size: 12px; color: #cbd5e1; margin-bottom: 8px; display: block;">EMAIL ID</label>
                     <input type="email" id="userEmail" placeholder="Enter email address" required>
                 </div>
-                <button type="submit" class="primary-btn" style="margin-top: 8px;">Submit & Proceed</button>
+                <button type="submit" class="primary-btn">Submit & Proceed</button>
             </form>
-            
-            <div style="text-align: center; margin-top: 16px; font-size: 11px; color: var(--text-muted);">
-                By continuing, you agree to our Terms & Conditions and Refund Policy.
-            </div>
         </div>
 
-        <!-- STEP 2: MEMBERSHIP PAYMENT PAGE -->
+        <!-- STEP 2: MEMBERSHIP & PAYMENT PAGE -->
         <div id="stepPayment" class="step-box">
             
             <div class="top-header-row">
-                <div class="trusted-badge">⭐ Trusted by 50k+ users</div>
+                <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); color: #fbbf24; padding: 6px 10px; border-radius: 10px; font-size: 11px; font-weight: 600;">
+                    ⭐ Trusted by 50k+ users
+                </div>
                 <div class="wallet-badge">
                     <span>💰 Wallet: <span id="walletBalance">₹0</span></span>
                 </div>
             </div>
 
-            <div class="live-announcement">
-    <div class="live-dot"></div>
-    <span>Buy any membership get instantly upto 50₹ to 400₹ bonus</span>
-            </div>
-            
-            </div>
+            <!-- Prominent Telegram Channel Banner -->
+            <a href="https://t.me/protocoljob" target="_blank" class="telegram-banner">
+                📢 Join Official Telegram Channel
+            </a>
 
-            <!-- PROMO CODE SECTION -->
-            <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.3); padding: 12px; border-radius: 14px; margin-bottom: 20px;">
-                <label style="color: #a5b4fc; margin-bottom: 6px;">Have a Promo Code?</label>
-                <div style="display: flex; gap: 8px;">
-                    <input type="text" id="promoInput" placeholder="Enter Promo Code" style="padding: 10px 14px; font-size: 13px;">
-                    <button type="button" onclick="applyPromoCode()" style="background: #6366f1; color: white; border: none; padding: 0 16px; border-radius: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">Apply</button>
+            <!-- Dynamic Promo Code Box -->
+            <div class="promo-section">
+                <label style="font-size: 11px; margin-bottom: 4px; display: block; color: #cbd5e1;">Have a Promo Code? (Get Bonus)</label>
+                <div class="promo-row">
+                    <input type="text" id="promoInput" class="promo-input" placeholder="Enter code (e.g. PROTOINDIA)">
+                    <button type="button" class="promo-btn" onclick="applyPromoCode()">Apply</button>
                 </div>
             </div>
 
             <h2>Membership Plans</h2>
             <p class="subtitle">Choose your preferred plan below.</p>
 
-            <!-- WEEKLY MEMBERSHIP PLANS -->
             <div class="plan-category">Weekly Membership</div>
-
             <div class="plan-card">
                 <div class="plan-info">
                     <div class="price">Pay ₹600</div>
                     <div class="type">Get ₹2200 Weekly</div>
-                    <div class="offer-tag">Limited Time Offer: End in 2 Days</div>
                 </div>
-                <a href="https://rzp.io/rzp/hQ4qOK4" target="_blank" class="pay-now-btn" onclick="setPendingPayment('₹600')">Pay Now</a>
+                <a href="https://rzp.io/rzp/hQ4qOK4" target="_blank" class="pay-now-btn">Pay Now</a>
             </div>
-
+            
             <div class="plan-card">
                 <div class="plan-info">
                     <div class="price">Pay ₹100</div>
                     <div class="type">Get ₹200 Weekly</div>
                 </div>
-                <a href="https://rzp.io/rzp/HA3J194Z" target="_blank" class="pay-now-btn" onclick="setPendingPayment('₹100')">Pay Now</a>
-            </div>
-
-            <div class="plan-card">
-                <div class="plan-info">
-                    <div class="price">Pay ₹200</div>
-                    <div class="type">Get ₹650 Weekly</div>
-                    <div class="offer-tag">Limited Time Offer: End in 2 Days</div>
-                </div>
-                <a href="https://rzp.io/rzp/VnyJD0j" target="_blank" class="pay-now-btn" onclick="setPendingPayment('₹200')">Pay Now</a>
-            </div>
-
-            <div class="plan-card">
-                <div class="plan-info">
-                    <div class="price">Pay ₹500</div>
-                    <div class="type">Get ₹1000 Weekly</div>
-                </div>
-                <a href="https://rzp.io/rzp/dxZbJvJo" target="_blank" class="pay-now-btn" onclick="setPendingPayment('₹500')">Pay Now</a>
-            </div>
-
-            <!-- MONTHLY MEMBERSHIP PLANS -->
-            <div class="plan-category">Monthly Membership</div>
-
-            <div class="plan-card">
-                <div class="plan-info">
-                    <div class="price">Pay ₹100</div>
-                    <div class="type">Get ₹400 Monthly</div>
-                </div>
-                <a href="https://rzp.io/rzp/FyS7XzH" target="_blank" class="pay-now-btn" onclick="setPendingPayment('₹100')">Pay Now</a>
-            </div>
-
-            <div class="plan-card">
-                <div class="plan-info">
-                    <div class="price">Pay ₹200</div>
-                    <div class="type">Get ₹600 Monthly</div>
-                </div>
-                <a href="https://rzp.io/rzp/jkulf4O" target="_blank" class="pay-now-btn" onclick="setPendingPayment('₹200')">Pay Now</a>
-            </div>
-
-            <div class="plan-card">
-                <div class="plan-info">
-                    <div class="price">Pay ₹500</div>
-                    <div class="type">Get ₹1500 Monthly</div>
-                </div>
-                <a href="https://rzp.io/rzp/xSMVjDb" target="_blank" class="pay-now-btn" onclick="setPendingPayment('₹500')">Pay Now</a>
-            </div>
-
-            <div class="plan-card">
-                <div class="plan-info">
-                    <div class="price">Pay ₹700</div>
-                    <div class="type">Get ₹2000 Monthly</div>
-                </div>
-                <a href="https://rzp.io/rzp/wE8Tehkc" target="_blank" class="pay-now-btn" onclick="setPendingPayment('₹700')">Pay Now</a>
-            </div>
-
-            <!-- VERIFY PAYMENT SECTION (Appears after clicking Pay Now) -->
-            <div id="verifySection" style="display: none; margin-top: 15px; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); padding: 14px; border-radius: 14px; text-align: center;">
-                <p style="font-size: 12px; color: #fbbf24; margin-bottom: 10px;">Did you complete the payment via Google Pay?</p>
-                <button type="button" class="primary-btn verify-btn" onclick="verifyAndClaimBonus()">✔ Verify Payment & Claim Bonus</button>
-            </div>
-
-            <!-- CONTACT SUPPORT SECTION -->
-            <div class="support-box">
-                <a href="mailto:supportprotocool@gmail.com" class="primary-btn" style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); margin-bottom: 14px;">Contact Support</a>
-                
-                <div style="font-size: 11px; color: var(--text-muted); line-height: 1.5; text-align: left;">
-                    <p style="margin-bottom: 4px;"><strong style="color: #f8fafc;">Terms & Conditions:</strong> By using our platform, you agree to abide by all community rules and verification guidelines.</p>
-                    <p><strong style="color: #ef4444;">Refund Policy:</strong> All sales are final. Refunds are processed only in case of duplicate billing or system errors within 3-5 business days.</p>
-                </div>
+                <a href="https://rzp.io/rzp/HA3J194Z" target="_blank" class="pay-now-btn">Pay Now</a>
             </div>
         </div>
 
     </div>
-        <script>
+        
+    <script>
         function submitForm(event) {
             event.preventDefault();
             
@@ -456,81 +207,39 @@
             localStorage.setItem("user_phone", phone);
             localStorage.setItem("user_email", email);
             
-            showPaymentPage();
-        }
-
-        function showPaymentPage() {
             document.getElementById("stepForm").classList.remove("active");
             document.getElementById("stepPayment").classList.add("active");
             
-            let savedWallet = localStorage.getItem("user_wallet");
-            if(savedWallet) {
-                document.getElementById("walletBalance").innerText = "₹" + savedWallet;
-            }
+            let savedWallet = localStorage.getItem("user_wallet") || 0;
+            document.getElementById("walletBalance").innerText = "₹" + savedWallet;
         }
 
-        // 1. Jab user kisi bhi 'Pay Now' par click karega, verification box open hoga
-        function setPendingPayment(amount) {
-            localStorage.setItem("pending_payment", amount);
-            setTimeout(() => {
-                document.getElementById("verifySection").style.display = "block";
-            }, 1000);
-        }
-
-        // 2. Secure Verification & One-Time Bonus Lock (Baar-baar click karne par bonus nahi milega)
-        function verifyAndClaimBonus() {
-            let hasClaimed = localStorage.getItem("bonus_claimed");
-
-            if (hasClaimed === "yes") {
-                alert("❌ You have already claimed your one-time payment bonus!");
-                document.getElementById("verifySection").style.display = "none";
-                return;
-            }
-
-            let pendingPlan = localStorage.getItem("pending_payment");
-            if (!pendingPlan) {
-                alert("❌ Please click 'Pay Now' and complete the payment first!");
-                return;
-            }
-
-            let randomBonus = Math.floor(Math.random() * (400 - 50 + 1)) + 50;
-            let currentWallet = parseInt(localStorage.getItem("user_wallet")) || 0;
-            let newWalletBalance = currentWallet + randomBonus;
-            
-            localStorage.setItem("user_wallet", newWalletBalance);
-            localStorage.setItem("bonus_claimed", "yes"); // Lock lag gaya taaki dobara bonus na mile
-            localStorage.removeItem("pending_payment");
-
-            document.getElementById("walletBalance").innerText = "₹" + newWalletBalance;
-            document.getElementById("verifySection").style.display = "none";
-
-            alert(`🎉 Payment Verified Successfully via Google Pay!\n\nCongratulations! ₹${randomBonus} bonus has been added to your Real Wallet.`);
-        }
-
-        // 3. Promo Code Logic (Jaise code: BONUS2026 ya ELITE100)
+        // Flexible Custom Promo Code Logic (User can type any code like PROTOINDIA)
         function applyPromoCode() {
-            let code = document.getElementById("promoInput").value.trim().toUpperCase();
-            let promoUsed = localStorage.getItem("promo_used");
+            const codeInput = document.getElementById("promoInput").value.trim();
+            const isClaimed = localStorage.getItem("promo_claimed");
 
-            if (promoUsed === "yes") {
-                alert("❌ You have already used a promo code!");
+            if(isClaimed === "true") {
+                alert("❌ You have already used a promo code on this device!");
                 return;
             }
 
-            if (code === "BONUS2026" || code === "ELITE100") {
-                let promoBonus = 150;
-                let currentWallet = parseInt(localStorage.getItem("user_wallet")) || 0;
-                let newWalletBalance = currentWallet + promoBonus;
-
-                localStorage.setItem("user_wallet", newWalletBalance);
-                localStorage.setItem("promo_used", "yes");
-                document.getElementById("walletBalance").innerText = "₹" + newWalletBalance;
-
-                alert(`🎉 Promo Code Applied! ₹${promoBonus} added to your wallet.`);
-                document.getElementById("promoInput").value = "";
-            } else {
-                alert("❌ Invalid Promo Code! Please enter a valid code.");
+            if(codeInput === "") {
+                alert("❌ Please enter a valid promo code.");
+                return;
             }
+
+            // Generates random bonus between ₹50 to ₹400
+            let randomBonus = Math.floor(Math.random() * (400 - 50 + 1)) + 50; 
+            let currentWallet = parseInt(localStorage.getItem("user_wallet")) || 0;
+            let newBalance = currentWallet + randomBonus;
+
+            localStorage.setItem("user_wallet", newBalance);
+            localStorage.setItem("promo_claimed", "true");
+
+            document.getElementById("walletBalance").innerText = "₹" + newBalance;
+            document.getElementById("promoInput").value = "";
+            alert(`🎉 Promo Code Applied Successfully!\n\nCongratulations! ₹${randomBonus} bonus added to your Wallet.`);
         }
     </script>
 </body>
