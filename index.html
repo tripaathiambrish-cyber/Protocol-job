@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elite Membership Portal - ProtocolJob</title>
-    <!-- PWA Meta Tags for Mobile Installation -->
     <meta name="theme-color" content="#090d16">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -15,7 +14,6 @@
             --card-bg: rgba(30, 41, 59, 0.75);
             --border-glass: rgba(255, 255, 255, 0.08);
             --accent-primary: #6366f1;
-            --accent-glow: rgba(99, 102, 241, 0.4);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
         }
@@ -63,20 +61,33 @@
         .step-box { display: none; }
         .step-box.active { display: block; }
 
+        .plans-scroll-area {
+            max-height: 380px;
+            overflow-y: auto;
+            padding-right: 4px;
+            margin-bottom: 10px;
+        }
+        .plans-scroll-area::-webkit-scrollbar { width: 4px; }
+        .plans-scroll-area::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
         .telegram-banner {
             background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
             color: #ffffff; padding: 12px 16px; border-radius: 14px;
             font-size: 14px; font-weight: 700; margin-bottom: 16px;
             text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px;
             text-decoration: none; box-shadow: 0 8px 20px rgba(14, 165, 233, 0.3);
+            transition: transform 0.2s;
         }
+        .telegram-banner:hover { transform: translateY(-1px); }
 
         .promo-section {
             background: rgba(15, 23, 42, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.08);
             padding: 14px; border-radius: 14px; margin-bottom: 16px;
         }
-
         .promo-row { display: flex; gap: 8px; margin-top: 6px; }
         .promo-input {
             flex: 1; padding: 10px 12px; font-size: 13px;
@@ -98,7 +109,7 @@
         
         .plan-category {
             font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-            color: #38bdf8; margin: 20px 0 10px 0; display: flex; align-items: center; gap: 10px;
+            color: #38bdf8; margin: 15px 0 10px 0; display: flex; align-items: center; gap: 10px;
         }
         .plan-category::after { content: ''; flex: 1; height: 1px; background: rgba(255, 255, 255, 0.1); }
 
@@ -110,6 +121,14 @@
         .plan-info .price { font-size: 16px; font-weight: 800; color: #ffffff; }
         .plan-info .type { font-size: 12px; color: #34d399; font-weight: 600; margin-top: 2px; }
         
+        .offer-tag {
+            font-size: 10px; color: #f59e0b;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            padding: 3px 6px; border-radius: 4px;
+            display: inline-block; margin-top: 4px; font-weight: 600;
+        }
+
         .primary-btn {
             width: 100%; padding: 14px; font-size: 15px; font-weight: 700; color: #ffffff;
             background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
@@ -120,9 +139,13 @@
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             border: none; border-radius: 12px; text-decoration: none; white-space: nowrap;
         }
+        .support-box {
+            margin-top: 15px; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.08); text-align: center;
+        }
     </style>
 </head>
-    <body>
+
+<body>
     <div class="main-container">
         
         <!-- STEP 1: USER LOGIN FORM -->
@@ -145,7 +168,6 @@
                 <button type="submit" class="primary-btn">Submit & Proceed</button>
             </form>
         </div>
-
         <!-- STEP 2: MEMBERSHIP & PAYMENT PAGE -->
         <div id="stepPayment" class="step-box">
             
@@ -158,9 +180,12 @@
                 </div>
             </div>
 
-            <!-- Prominent Telegram Channel Banner -->
+            <!-- Telegram Banner with Official Logo -->
             <a href="https://t.me/protocoljob" target="_blank" class="telegram-banner">
-                📢 Join Official Telegram Channel
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#ffffff">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.03-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.38-.27-2.06-.49-.83-.27-1.49-.42-1.43-.89.03-.25.38-.51 1.06-.78 4.15-1.81 6.91-3.01 8.28-3.61 3.94-1.72 4.76-2.02 5.3-2.03.12 0 .39.03.56.17.14.12.18.28.2.45-.02.07-.02.13-.04.23z"/>
+                </svg>
+                <span>Join Official Telegram Channel</span>
             </a>
 
             <!-- Dynamic Promo Code Box -->
@@ -174,28 +199,95 @@
 
             <h2>Membership Plans</h2>
             <p class="subtitle">Choose your preferred plan below.</p>
+            <!-- SCROLLABLE PLANS CONTAINER -->
+            <div class="plans-scroll-area">
+                
+                <!-- WEEKLY MEMBERSHIP PLANS -->
+                <div class="plan-category" style="margin-top: 0;">Weekly Membership</div>
+                
+                <!-- ₹600 Plan with Timer -->
+                <div class="plan-card">
+                    <div class="plan-info">
+                        <div class="price">Pay ₹600</div>
+                        <div class="type">Get ₹2200 Weekly</div>
+                        <div class="offer-tag">⏳ Ends in: <span class="countdown-timer">71h 59m 59s</span></div>
+                    </div>
+                    <a href="https://rzp.io/rzp/hQ4qOK4" target="_blank" class="pay-now-btn">Pay Now</a>
+                </div>
+                
+                <!-- ₹100 Weekly Plan -->
+                <div class="plan-card">
+                    <div class="plan-info">
+                        <div class="price">Pay ₹100</div>
+                        <div class="type">Get ₹200 Weekly</div>
+                    </div>
+                    <a href="https://rzp.io/rzp/HA3J194Z" target="_blank" class="pay-now-btn">Pay Now</a>
+                </div>
 
-            <div class="plan-category">Weekly Membership</div>
-            <div class="plan-card">
-                <div class="plan-info">
-                    <div class="price">Pay ₹600</div>
-                    <div class="type">Get ₹2200 Weekly</div>
+                <!-- ₹200 Plan with Timer -->
+                <div class="plan-card">
+                    <div class="plan-info">
+                        <div class="price">Pay ₹200</div>
+                        <div class="type">Get ₹650 Weekly</div>
+                        <div class="offer-tag">⏳ Ends in: <span class="countdown-timer">71h 59m 59s</span></div>
+                    </div>
+                    <a href="https://rzp.io/rzp/VnyJD0j" target="_blank" class="pay-now-btn">Pay Now</a>
                 </div>
-                <a href="https://rzp.io/rzp/hQ4qOK4" target="_blank" class="pay-now-btn">Pay Now</a>
+
+                <!-- ₹500 Weekly Plan -->
+                <div class="plan-card">
+                    <div class="plan-info">
+                        <div class="price">Pay ₹500</div>
+                        <div class="type">Get ₹1000 Weekly</div>
+                    </div>
+                    <a href="https://rzp.io/rzp/dxZbJvJo" target="_blank" class="pay-now-btn">Pay Now</a>
+                </div>
+
+                <!-- MONTHLY MEMBERSHIP PLANS -->
+                <div class="plan-category">Monthly Membership</div>
+
+                <div class="plan-card">
+                    <div class="plan-info">
+                        <div class="price">Pay ₹100</div>
+                        <div class="type">Get ₹400 Monthly</div>
+                    </div>
+                    <a href="https://rzp.io/rzp/FyS7XzH" target="_blank" class="pay-now-btn">Pay Now</a>
+                </div>
+
+                <div class="plan-card">
+                    <div class="plan-info">
+                        <div class="price">Pay ₹200</div>
+                        <div class="type">Get ₹600 Monthly</div>
+                    </div>
+                    <a href="https://rzp.io/rzp/jkulf4O" target="_blank" class="pay-now-btn">Pay Now</a>
+                </div>
+
+                <div class="plan-card">
+                    <div class="plan-info">
+                        <div class="price">Pay ₹500</div>
+                        <div class="type">Get ₹1500 Monthly</div>
+                    </div>
+                    <a href="https://rzp.io/rzp/xSMVjDb" target="_blank" class="pay-now-btn">Pay Now</a>
+                </div>
+
+                <div class="plan-card">
+                    <div class="plan-info">
+                        <div class="price">Pay ₹700</div>
+                        <div class="type">Get ₹2000 Monthly</div>
+                    </div>
+                    <a href="https://rzp.io/rzp/wE8Tehkc" target="_blank" class="pay-now-btn">Pay Now</a>
+                </div>
+
             </div>
-            
-            <div class="plan-card">
-                <div class="plan-info">
-                    <div class="price">Pay ₹100</div>
-                    <div class="type">Get ₹200 Weekly</div>
-                </div>
-                <a href="https://rzp.io/rzp/HA3J194Z" target="_blank" class="pay-now-btn">Pay Now</a>
+
+            <!-- CONTACT SUPPORT SECTION -->
+            <div class="support-box">
+                <a href="mailto:supportprotocool@gmail.com" class="primary-btn" style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); font-size: 13px; padding: 10px;">Contact Support</a>
             </div>
         </div>
 
     </div>
-        
-    <script>
+        <script>
         function submitForm(event) {
             event.preventDefault();
             
@@ -214,7 +306,6 @@
             document.getElementById("walletBalance").innerText = "₹" + savedWallet;
         }
 
-        // Flexible Custom Promo Code Logic (User can type any code like PROTOINDIA)
         function applyPromoCode() {
             const codeInput = document.getElementById("promoInput").value.trim();
             const isClaimed = localStorage.getItem("promo_claimed");
@@ -229,7 +320,6 @@
                 return;
             }
 
-            // Generates random bonus between ₹50 to ₹400
             let randomBonus = Math.floor(Math.random() * (400 - 50 + 1)) + 50; 
             let currentWallet = parseInt(localStorage.getItem("user_wallet")) || 0;
             let newBalance = currentWallet + randomBonus;
@@ -241,6 +331,24 @@
             document.getElementById("promoInput").value = "";
             alert(`🎉 Promo Code Applied Successfully!\n\nCongratulations! ₹${randomBonus} bonus added to your Wallet.`);
         }
+
+        // Live 3-Day Countdown Timer Logic
+        const countDownDate = new Date().getTime() + (3 * 24 * 60 * 60 * 1000);
+
+        setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)) + Math.floor(distance / (1000 * 60 * 60 * 24)) * 24;
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            const timerElements = document.querySelectorAll(".countdown-timer");
+            timerElements.forEach(el => {
+                el.innerText = `${hours}h ${minutes}m ${seconds}s`;
+            });
+        }, 1000);
     </script>
 </body>
 </html>
+
