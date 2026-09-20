@@ -46,7 +46,62 @@
             padding: 24px; border-radius: 24px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
         }
+<style>
+    /* 1. Smooth Glow and Hover Effects for Buttons */
+    .primary-btn, .pay-now-btn {
+        transition: all 0.3s ease-in-ease-out;
+        position: relative.
+        overflow: hidden.
+    }
+    
+    .primary-btn:hover, .pay-now-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(14, 165, 233, 0.4);
+    }
 
+    /* 2. Glowing Pulse Effect for Telegram Banner */
+    .telegram-banner {
+        animation: pulseGlow 2s infinite;
+        transition: transform 0.2s ease;
+    }
+
+    .telegram-banner:hover {
+        transform: scale(1.02);
+    }
+
+    @keyframes pulseGlow {
+        0% {
+            box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.4);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(2, 132, 199, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(2, 132, 199, 0);
+        }
+    }
+
+    /* 3. Modern Glassmorphism Card Hover Enhancement */
+    .plan-card {
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .plan-card:hover {
+        border-color: rgba(14, 165, 233, 0.5);
+        transform: translateY(-3px);
+        background: rgba(30, 41, 59, 0.85);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    /* 4. Smooth Input Focus Glow */
+    input:focus {
+        border-color: #0ea5e9 !important;
+        box-shadow: 0 0 10px rgba(14, 165, 233, 0.3);
+        outline: none;
+    }
+</style>
+    
         .top-header-row {
             display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; gap: 10px;
         }
