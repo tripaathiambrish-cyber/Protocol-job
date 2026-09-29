@@ -371,25 +371,6 @@
             });
         }, 1000);
     <script>
-// Function to validate UPI / Payment Match
-function validateAndSubmitForm() {
-    // Form me user dwara dala gaya UPI ID ya UTR
-    let formUpiInput = document.getElementById('userUpi').value.trim(); // Dhyan dein: yahan id 'userUpi' rakhi hai jo form me hai
-    
-    // Asli verified payment UPI ID ya UTR (jo payment gateway ya backend se milti hai)
-    let actualPaidUpi = "user_verified_upi@okaxis"; // Yeh value aapke payment verification system se aani chahiye
-    
-    // Check karein ki match ho raha hai ya nahi
-    if (formUpiInput !== actualPaidUpi) {
-        // Agar mismatch ho toh form reject kar dein
-        alert("Payment Verification Failed! Aapne jo UPI ID dala hai aur jis UPI se payment hua hai, woh match nahi ho raha hai. Form reject kar diya gaya hai.");
-        return false; // Form submit nahi hoga
-    } else {
-        // Agar match ho jaye toh form successfully submit ho jayega
-        alert("Payment Verified Successfully! Form submitted.");
-        return true; 
-    }
-}
 </script>
     
 </body>
